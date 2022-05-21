@@ -13,7 +13,7 @@
         <AnchorPane layoutX="491.0" layoutY="-86.0" prefHeight="200.0" prefWidth="125.0" />
         <BorderPane layoutY="137.0" prefHeight="126.0" prefWidth="126.0" style="-fx-background-color: F8DCA9;">
             <center>
-                <Button fx:id="but21" maxHeight="206.0" maxWidth="224.0" minHeight="97.0" mnemonicParsing="false" prefHeight="206.0" prefWidth="224.0" style="-fx-background-radius: 25em; -fx-max-height: 100px; -fx-max-width: 100px; -fx-min-height: 100px; -fx-min-width: 100px;" BorderPane.alignment="CENTER" onAction="#click2" />
+                <Button fx:id="but21" maxHeight="206.0" maxWidth="224.0" minHeight="97.0" mnemonicParsing="false" prefHeight="206.0" prefWidth="224.0" style="-fx-background-radius: 25em; -fx-max-height: 100px; -fx-max-width: 100px; -fx-min-height: 100px; -fx-min-width: 100px;" BorderPane.alignment="CENTER"  />
             </center>
         </BorderPane>
         <BorderPane layoutY="6.0" prefHeight="126.0" prefWidth="126.0" style="-fx-background-color: F8DCA9;">
@@ -23,7 +23,7 @@
         </BorderPane>
         <BorderPane layoutY="288.0" prefHeight="126.0" prefWidth="126.0" style="-fx-background-color: F8DCA9;">
             <center>
-                <Button fx:id="but31" maxHeight="206.0" maxWidth="224.0" minHeight="97.0" mnemonicParsing="false" prefHeight="206.0" prefWidth="224.0" style="-fx-background-radius: 25em; -fx-max-height: 100px; -fx-max-width: 100px; -fx-min-height: 100px; -fx-min-width: 100px;" BorderPane.alignment="CENTER" onAction="#click3"/>
+                <Button fx:id="but31" maxHeight="206.0" maxWidth="224.0" minHeight="97.0" mnemonicParsing="false" prefHeight="206.0" prefWidth="224.0" style="-fx-background-radius: 25em; -fx-max-height: 100px; -fx-max-width: 100px; -fx-min-height: 100px; -fx-min-width: 100px;" BorderPane.alignment="CENTER" />
             </center>
         </BorderPane>
         <BorderPane layoutX="280.0" layoutY="137.0" prefHeight="126.0" prefWidth="126.0" style="-fx-background-color: F8DCA9;">
@@ -33,12 +33,12 @@
         </BorderPane>
         <BorderPane layoutX="280.0" layoutY="6.0" prefHeight="126.0" prefWidth="126.0" style="-fx-background-color: F8DCA9;">
             <center>
-                <Button fx:id="but13" maxHeight="206.0" maxWidth="224.0" minHeight="97.0" mnemonicParsing="false" prefHeight="206.0" prefWidth="224.0" style="-fx-background-radius: 25em; -fx-max-height: 100px; -fx-max-width: 100px; -fx-min-height: 100px; -fx-min-width: 100px;" BorderPane.alignment="CENTER" />
+                <Button fx:id="but13" maxHeight="206.0" maxWidth="224.0" minHeight="97.0" mnemonicParsing="false" prefHeight="206.0" prefWidth="224.0" style="-fx-background-radius: 25em; -fx-max-height: 100px; -fx-max-width: 100px; -fx-min-height: 100px; -fx-min-width: 100px;" BorderPane.alignment="CENTER" onAction="#click3"/>
             </center>
         </BorderPane>
         <BorderPane layoutX="420.0" layoutY="6.0" prefHeight="126.0" prefWidth="126.0" style="-fx-background-color: F8DCA9;">
             <center>
-                <Button fx:id="but14" maxHeight="206.0" maxWidth="224.0" minHeight="97.0" mnemonicParsing="false" prefHeight="206.0" prefWidth="224.0" style="-fx-background-radius: 25em; -fx-max-height: 100px; -fx-max-width: 100px; -fx-min-height: 100px; -fx-min-width: 100px;" BorderPane.alignment="CENTER" />
+                <Button fx:id="but14" maxHeight="206.0" maxWidth="224.0" minHeight="97.0" mnemonicParsing="false" prefHeight="206.0" prefWidth="224.0" style="-fx-background-radius: 25em; -fx-max-height: 100px; -fx-max-width: 100px; -fx-min-height: 100px; -fx-min-width: 100px;" BorderPane.alignment="CENTER" onAction="#click4"/>
             </center>
         </BorderPane>
         <BorderPane layoutX="280.0" layoutY="276.0" prefHeight="126.0" prefWidth="126.0" style="-fx-background-color: F8DCA9;">
@@ -58,7 +58,7 @@
         </BorderPane>
         <BorderPane layoutX="136.0" layoutY="6.0" prefHeight="126.0" prefWidth="126.0" style="-fx-background-color: F8DCA9;">
             <center>
-                <Button fx:id="but12" maxHeight="206.0" maxWidth="224.0" minHeight="97.0" mnemonicParsing="false" prefHeight="206.0" prefWidth="224.0" style="-fx-background-radius: 25em; -fx-max-height: 100px; -fx-max-width: 100px; -fx-min-height: 100px; -fx-min-width: 100px;" BorderPane.alignment="CENTER" />
+                <Button fx:id="but12" maxHeight="206.0" maxWidth="224.0" minHeight="97.0" mnemonicParsing="false" prefHeight="206.0" prefWidth="224.0" style="-fx-background-radius: 25em; -fx-max-height: 100px; -fx-max-width: 100px; -fx-min-height: 100px; -fx-min-width: 100px;" BorderPane.alignment="CENTER" onAction="#click2"/>
             </center>
         </BorderPane>
         <BorderPane layoutX="428.0" layoutY="276.0" prefHeight="126.0" prefWidth="126.0" style="-fx-background-color: F8DCA9;">
@@ -73,7 +73,7 @@
         </BorderPane>
         <BorderPane layoutY="425.0" prefHeight="126.0" prefWidth="126.0" style="-fx-background-color: F8DCA9;">
             <center>
-                <Button fx:id="but41" maxHeight="206.0" maxWidth="224.0" minHeight="97.0" mnemonicParsing="false" prefHeight="206.0" prefWidth="224.0" style="-fx-background-radius: 25em; -fx-max-height: 100px; -fx-max-width: 100px; -fx-min-height: 100px; -fx-min-width: 100px;" BorderPane.alignment="CENTER" onAction="#click4"/>
+                <Button fx:id="but41" maxHeight="206.0" maxWidth="224.0" minHeight="97.0" mnemonicParsing="false" prefHeight="206.0" prefWidth="224.0" style="-fx-background-radius: 25em; -fx-max-height: 100px; -fx-max-width: 100px; -fx-min-height: 100px; -fx-min-width: 100px;" BorderPane.alignment="CENTER" />
             </center>
         </BorderPane>
         <BorderPane layoutX="136.0" layoutY="425.0" prefHeight="126.0" prefWidth="126.0" style="-fx-background-color: F8DCA9;">

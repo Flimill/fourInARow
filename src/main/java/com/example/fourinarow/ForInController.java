@@ -76,6 +76,13 @@ public class ForInController {
     boolean gameStatus = true; //стутс игры, если равен false, значит кто-то выйграл
     int stage = 0; //ход какого игрока (0 или 1)
 
+    String blueChip = "-fx-background-color: #0000ff; -fx-background-radius: 25em; -fx-max-height: 100px; -fx-max-width: 100px; -fx-min-height: 100px; -fx-min-width: 100px";
+    String darkBlueChip = "-fx-background-color: #0044cc; -fx-background-radius: 25em; -fx-max-height: 100px; -fx-max-width: 100px; -fx-min-height: 100px; -fx-min-width: 100px";
+    String greenChip = "-fx-background-color: #bbff00; -fx-background-radius: 25em; -fx-max-height: 100px; -fx-max-width: 100px; -fx-min-height: 100px; -fx-min-width: 100px";
+    String darkGreenChip = "-fx-background-color: #00cc00; -fx-background-radius: 25em; -fx-max-height: 100px; -fx-max-width: 100px; -fx-min-height: 100px; -fx-min-width: 100px";
+    String defaultChip = "-fx-background-radius: 25em; -fx-max-height: 100px; -fx-max-width: 100px; -fx-min-height: 100px; -fx-min-width: 100px";
+    String grayChip = "-fx-background-color: #bbff00; -fx-background-radius: 25em; -fx-max-height: 100px; -fx-max-width: 100px; -fx-min-height: 100px; -fx-min-width: 100px"; //
+
     @FXML
     void initialize() {
 
@@ -83,22 +90,30 @@ public class ForInController {
 
     @FXML
     protected void click1(){
-        searchSlotStatus(1);
+        if (gameStatus) {
+            searchSlotStatus(1);
         }
+    }
 
     @FXML
     protected void click2(){
-        searchSlotStatus(2);
+        if (gameStatus) {
+            searchSlotStatus(2);
+        }
     }
 
     @FXML
     protected void click3(){
-        searchSlotStatus(3);
+        if (gameStatus) {
+            searchSlotStatus(3);
+        }
     }
 
     @FXML
     protected void click4(){
-        searchSlotStatus(4);
+        if (gameStatus) {
+            searchSlotStatus(4);
+        }
     }
 
     protected void searchSlotStatus(int line){
@@ -107,6 +122,17 @@ public class ForInController {
         if (freePosition != -1){
             int count = 1;
             for (Field.Slot element: list){
+                if (element.status){                    //Пока не работает
+                    findButton(line, count).setStyle(grayChip);
+                    System.out.println("<id> " + findButton(line,count).getId()); // выводит id кнопки/слота на котором находится
+                    try {
+                        Thread.sleep(200);  //просто делает паузу на 200 млскнд
+                    } catch (InterruptedException e) {
+                        throw new RuntimeException(e);
+                    }
+                    findButton(line, count).setStyle(defaultChip);
+                }                                      //
+
                 if (count == freePosition){
                     element.status = false;
                     if (stage == 0){
@@ -143,58 +169,58 @@ public class ForInController {
                         return but11;
                     }
                     case 2 -> {
-                        return but12;
+                        return but21;
                     }
                     case 3 -> {
-                        return but13;
+                        return but31;
                     }
                     case 4 -> {
-                        return but14;
+                        return but41;
                     }
                 }
             }
             case 2 -> {
                 switch (position){
                     case 1 -> {
-                        return but21;
+                        return but12;
                     }
                     case 2 -> {
                         return but22;
                     }
                     case 3 -> {
-                        return but23;
+                        return  but32;
                     }
                     case 4 -> {
-                        return but24;
+                        return  but42;
                     }
                 }
             }
             case 3-> {
                 switch (position){
                     case 1 -> {
-                        return but31;
+                        return but13;
                     }
                     case 2 -> {
-                        return but32;
+                        return  but23;
                     }
                     case 3 -> {
                         return but33;
                     }
                     case 4 -> {
-                        return but34;
+                        return  but43;
                     }
                 }
             }
             case 4-> {
                 switch (position){
                     case 1 -> {
-                        return but41;
+                        return but14;
                     }
                     case 2 -> {
-                        return but42;
+                        return but24;
                     }
                     case 3 -> {
-                        return but43;
+                        return but34;
                     }
                     case 4 -> {
                         return but44;
@@ -220,16 +246,17 @@ public class ForInController {
         winner(lineOne);
         winner(lineTwo);
         winner(lineThree);
-        winner(lineThree);
+        winner(lineFour);
     }
 
     private void winner(ArrayList<Integer> line){
-        Integer result = checkLine(line);
+        int result = checkLine(line);
         FXMLLoader winner = new FXMLLoader();;
-        if (result != 0){
-            if (result == 1)
+        if (result != -1){
+            gameStatus = false;
+            if (result == 0)
                 winner.setLocation(getClass().getResource("greenWins.fxml"));
-            else
+            if (result == 1)
                 winner.setLocation(getClass().getResource("blueWins.fxml"));
             try {
                 winner.load();
@@ -247,7 +274,7 @@ public class ForInController {
     private int checkLine(ArrayList<Integer> line){
         int scorePlayer0 = 0;
         int scorePlayer1 = 0;
-        int codeResult = 0;
+        int codeResult = -1;
         for (Integer element: line){
             switch (element){
                 case 0 -> {
@@ -258,7 +285,7 @@ public class ForInController {
                 }
             }
         }
-        if (scorePlayer0 == 4) codeResult = 0;  //коды результата (1 - значит победа, а следующая цифра говорит о том кто)
+        if (scorePlayer0 == 4) codeResult = 0;
         else if (scorePlayer1 == 4) codeResult = 1;
         return codeResult;
     }
