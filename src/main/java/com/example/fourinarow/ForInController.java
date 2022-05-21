@@ -1,9 +1,14 @@
 package com.example.fourinarow;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -212,40 +217,30 @@ public class ForInController {
             lineThree.add(element.get(2).belonging);
             lineFour.add(element.get(3).belonging);
         }
-        if (checkLine(lineOne) != 0){
-            if (checkLine(lineOne) == 10){
-                System.out.println("Зеленый игрок выйграл");
-            } else {
-                System.out.println("Синий игрок выйграл");
-            }
-            gameStatus = false;   // Этот флаг будет останавливать игру
-        }
+        winner(lineOne);
+        winner(lineTwo);
+        winner(lineThree);
+        winner(lineThree);
+    }
 
-        if (checkLine(lineTwo) != 0){
-            if (checkLine(lineTwo) == 10){
-                System.out.println("Зеленый игрок выйграл");
-            } else {
-                System.out.println("Синий игрок выйграл");
+    private void winner(ArrayList<Integer> line){
+        Integer result = checkLine(line);
+        FXMLLoader winner = new FXMLLoader();;
+        if (result != 0){
+            if (result == 1)
+                winner.setLocation(getClass().getResource("greenWins.fxml"));
+            else
+                winner.setLocation(getClass().getResource("blueWins.fxml"));
+            try {
+                winner.load();
+            } catch (IOException e) {
+                e.printStackTrace();
             }
-            gameStatus = false;
-        }
+            Parent root = winner.getRoot();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.showAndWait();
 
-        if (checkLine(lineThree) != 0){
-            if (checkLine(lineThree) == 10){
-                System.out.println("Зеленый игрок выйграл");
-            } else {
-                System.out.println("Синий игрок выйграл");
-            }
-            gameStatus = false;
-        }
-
-        if (checkLine(lineFour) != 0){
-            if (checkLine(lineFour) == 10){
-                System.out.println("Зеленый игрок выйграл");
-            } else {
-                System.out.println("Синий игрок выйграл");
-            }
-            gameStatus = false;
         }
     }
 
@@ -263,8 +258,8 @@ public class ForInController {
                 }
             }
         }
-        if (scorePlayer0 == 4) codeResult = 10;  //коды результата (1 - значит победа, а следующая цифра говорит о том кто)
-        if (scorePlayer1 == 4) codeResult = 11;
+        if (scorePlayer0 == 4) codeResult = 0;  //коды результата (1 - значит победа, а следующая цифра говорит о том кто)
+        else if (scorePlayer1 == 4) codeResult = 1;
         return codeResult;
     }
 }
