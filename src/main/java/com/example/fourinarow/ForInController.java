@@ -118,19 +118,24 @@ public class ForInController {
     private Button but66;
     @FXML
     private Button but67;
+    @FXML
+    private Button move;
+    @FXML
+    private Button reset;
 
-    private Integer[][] Button;
-    private Integer move = 0;
+
     Field mainField = new Field();
     boolean gameStatus = true; //стутс игры, если равен false, значит кто-то выйграл
     int stage = 0; //ход какого игрока (0 или 1)
 
-    String blueChip = "-fx-background-color: #0000ff; -fx-background-radius: 25em; -fx-max-height: 100px; -fx-max-width: 100px; -fx-min-height: 100px; -fx-min-width: 100px";
+    String blueChip = "-fx-background-color: #0000ff; -fx-background-radius: 25em; -fx-max-height: 100px; -fx-max-width: 100px; -fx-min-height: 100px; -fx-min-width: 100px; -fx-border-color: black; -fx-border-radius: 25em; -fx-border-width: 3px";
     String darkBlueChip = "-fx-background-color: #0044cc; -fx-background-radius: 25em; -fx-max-height: 100px; -fx-max-width: 100px; -fx-min-height: 100px; -fx-min-width: 100px";
-    String greenChip = "-fx-background-color: #bbff00; -fx-background-radius: 25em; -fx-max-height: 100px; -fx-max-width: 100px; -fx-min-height: 100px; -fx-min-width: 100px";
+    String greenChip = "-fx-background-color: #bbff00; -fx-background-radius: 25em; -fx-max-height: 100px; -fx-max-width: 100px; -fx-min-height: 100px; -fx-min-width: 100px; -fx-border-color: black; -fx-border-radius: 25em; -fx-border-width: 3px";
     String darkGreenChip = "-fx-background-color: #00cc00; -fx-background-radius: 25em; -fx-max-height: 100px; -fx-max-width: 100px; -fx-min-height: 100px; -fx-min-width: 100px";
     String defaultChip = "-fx-background-radius: 25em; -fx-max-height: 100px; -fx-max-width: 100px; -fx-min-height: 100px; -fx-min-width: 100px";
     String grayChip = "-fx-background-color: #bbff00; -fx-background-radius: 25em; -fx-max-height: 100px; -fx-max-width: 100px; -fx-min-height: 100px; -fx-min-width: 100px"; //
+
+
 
     @FXML
     void initialize() {
@@ -185,34 +190,43 @@ public class ForInController {
         }
     }
 
+    @FXML
+    protected void restart(){
+        reload();
+    }
+
 
     protected void searchSlotStatus(int line){
+        greenChip = greenChip;
+        blueChip = blueChip;
         ArrayList<Field.Slot> list = mainField.getLine(line);
         int freePosition = findOutIfThereIsAPlace(list);
         if (freePosition != -1){
             int count = 1;
             for (Field.Slot element: list){
-                if (element.status){                    //Пока не работает
+                if (element.status){                    //Пока не работает (Если не будет времени на доработку, надо будет удалить...)
                     findButton(line, count).setStyle(grayChip);
-                   System.out.println("<id> " + findButton(line,count).getId()); // выводит id кнопки/слота на котором находится
+                    //System.out.println("<id> " + findButton(line,count).getId()); // выводит id кнопки/слота на котором находится
                     try {
                         Thread.sleep(50);  //
                     } catch (InterruptedException e) {
                         throw new RuntimeException(e);
                     }
                     findButton(line, count).setStyle(defaultChip);
-                }                                      //
+                }                                      // (...вот до сюда)
 
                 if (count == freePosition){
                     element.status = false;
                     if (stage == 0){
                         element.belonging = 0;
-                        findButton(line,freePosition).setStyle("-fx-background-color: #bbff00; -fx-background-radius: 25em; -fx-max-height: 100px; -fx-max-width: 100px; -fx-min-height: 100px; -fx-min-width: 100px");
+                        findButton(line,freePosition).setStyle(greenChip);
                         stage = 1;
+                        move.setStyle(blueChip);
                     } else {
                         element.belonging = 1;
-                        findButton(line,freePosition).setStyle("-fx-background-color: #0000ff; -fx-background-radius: 25em; -fx-max-height: 100px; -fx-max-width: 100px; -fx-min-height: 100px; -fx-min-width: 100px");
+                        findButton(line,freePosition).setStyle(blueChip);
                         stage = 0;
+                        move.setStyle(greenChip);
                     }
                 }
                 count++;
@@ -392,27 +406,20 @@ public class ForInController {
     }
 
     private void checkStatus(){
-        ArrayList<ArrayList<Field.Slot>> arrayLists = mainField.getAllLines();
-        ArrayList<Integer> lineOne = new ArrayList<>();
-        ArrayList<Integer> lineTwo = new ArrayList<>();
-        ArrayList<Integer> lineThree = new ArrayList<>();
-        ArrayList<Integer> lineFour = new ArrayList<>();
-        ArrayList<Integer> lineFive = new ArrayList<>();
-        ArrayList<Integer> lineSix = new ArrayList<>();
-        for (ArrayList<Field.Slot> element: arrayLists){
-            lineOne.add(element.get(0).belonging);
-            lineTwo.add(element.get(1).belonging);
-            lineThree.add(element.get(2).belonging);
-            lineFour.add(element.get(3).belonging);
-            lineFive.add(element.get(4).belonging);
-            lineSix.add(element.get(5).belonging);
+        ArrayList<Field.Slot> matrix = mainField.getMatrix();
+        ArrayList<ArrayList<Integer>> horizontalLines = getHorizontalLinesFromMatrix(matrix);
+        ArrayList<ArrayList<Integer>> verticalLines = getVerticalLinesFromMatrix(matrix);
+        ArrayList<ArrayList<Integer>> diagonalLines = getDiagonalLinesFromMatrix(matrix);
+        for (ArrayList<Integer> line: horizontalLines){
+            checkForWinner(line);
         }
-        checkForWinner(lineOne);
-        checkForWinner(lineTwo);
-        checkForWinner(lineThree);
-        checkForWinner(lineFour);
-        checkForWinner(lineFive);
-        checkForWinner(lineSix);
+        for (ArrayList<Integer> line: verticalLines){
+            checkForWinner(line);
+        }
+        for (ArrayList<Integer> line: diagonalLines){
+            checkForWinner(line);
+        }
+
 
     }
 
@@ -438,6 +445,219 @@ public class ForInController {
         }
     }
 
+    private int checkLine(ArrayList<Integer> line){
+        int scorePlayer0 = 0;
+        int scorePlayer1 = 0;
+        int codeResult = -1;
+        int prevResult = -2;
+        for (Integer element: line){
+            if (element != prevResult){
+                scorePlayer0 = 0;
+                scorePlayer1 = 0;
+            }
+            switch (element){
+                case 0 -> {
+                    scorePlayer0++;
+                }
+                case 1 -> {
+                    scorePlayer1++;
+                }
+            }
+            if (scorePlayer0 == 4) return 0;
+            else if (scorePlayer1 == 4) return 1;
+            prevResult = element;
+        }
+        return codeResult;
+    }
+
+    private ArrayList<ArrayList<Integer>> getHorizontalLinesFromMatrix(ArrayList<Field.Slot> matrix){
+        ArrayList<ArrayList<Integer>> result = new ArrayList<>();;
+        ArrayList<Integer> lineOne = new ArrayList<>();
+        ArrayList<Integer> lineTwo = new ArrayList<>();
+        ArrayList<Integer> lineThree = new ArrayList<>();
+        ArrayList<Integer> lineFour = new ArrayList<>();
+        ArrayList<Integer> lineFive = new ArrayList<>();
+        ArrayList<Integer> lineSix = new ArrayList<>();
+        int i = 0;
+        while (i < 7){
+            lineOne.add(matrix.get(i).belonging);
+            lineTwo.add(matrix.get(i + 7).belonging);
+            lineThree.add(matrix.get(i + 14).belonging);
+            lineFour.add(matrix.get(i + 21).belonging);
+            lineFive.add(matrix.get(i + 28).belonging);
+            lineSix.add(matrix.get(i + 35).belonging);
+            i++;
+        }
+        result.add(lineOne);
+        result.add(lineTwo);
+        result.add(lineThree);
+        result.add(lineFour);
+        result.add(lineFive);
+        result.add(lineSix);
+
+        //showMeMatrix(matrix);
+        return result;
+    }
+
+    private ArrayList<ArrayList<Integer>> getVerticalLinesFromMatrix(ArrayList<Field.Slot> matrix){
+        ArrayList<ArrayList<Integer>> result = new ArrayList<>();
+        ArrayList<Integer> lineOne = new ArrayList<>();
+        ArrayList<Integer> lineTwo = new ArrayList<>();
+        ArrayList<Integer> lineThree = new ArrayList<>();
+        ArrayList<Integer> lineFour = new ArrayList<>();
+        ArrayList<Integer> lineFive = new ArrayList<>();
+        ArrayList<Integer> lineSix = new ArrayList<>();
+        ArrayList<Integer> lineSeven = new ArrayList<>();
+        int i = 0;
+        int s = 0;
+        while (i < 6){
+            lineOne.add(matrix.get(s).belonging);
+            lineTwo.add(matrix.get(s + 1).belonging);
+            lineThree.add(matrix.get(s + 2).belonging);
+            lineFour.add(matrix.get(s + 3).belonging);
+            lineFive.add(matrix.get(s + 4).belonging);
+            lineSix.add(matrix.get(s + 5).belonging);
+            lineSeven.add(matrix.get(s + 6).belonging);
+            s += 7;
+            i++;
+        }
+        result.add(lineOne);
+        result.add(lineTwo);
+        result.add(lineThree);
+        result.add(lineFour);
+        result.add(lineFive);
+        result.add(lineSix);
+        result.add(lineSeven);
+        return result;
+    }
+
+    private ArrayList<ArrayList<Integer>> getDiagonalLinesFromMatrix(ArrayList<Field.Slot> matrix){  // пока понятия не имею как уменьшить это нагромождения кода.
+        ArrayList<ArrayList<Integer>> result = new ArrayList<>();
+        ArrayList<Integer> diagonalOne = new ArrayList<>();
+        ArrayList<Integer> diagonalTwo = new ArrayList<>();
+        ArrayList<Integer> diagonalThree = new ArrayList<>();
+        ArrayList<Integer> diagonalFour = new ArrayList<>();
+        ArrayList<Integer> diagonalFive = new ArrayList<>();
+        ArrayList<Integer> diagonalSix = new ArrayList<>();
+
+        ArrayList<Integer> diagonalSeven = new ArrayList<>();
+        ArrayList<Integer> diagonalEight = new ArrayList<>();
+        ArrayList<Integer> diagonalNine = new ArrayList<>();
+        ArrayList<Integer> diagonalTen = new ArrayList<>();
+        ArrayList<Integer> diagonalEleven = new ArrayList<>();
+        ArrayList<Integer> diagonalTwelve = new ArrayList<>();
+
+        int i = 0;
+        int rightDiagonalCounter = 0;  // нужен для сдвига.
+        int leftDiagonalCounter = 0;
+        int start1 = 3;     //стартовые индексы диагонали
+        int start2 = 4;
+        int start3 = 5;
+        int start4 = 6;
+        int start5 = 13;
+        int start6 = 20;
+        int start7 = 14;
+        int start8 = 7;
+        int start9 = 0;
+        int start10 = 1;
+        int start11 = 2;
+        int start12 = 3;
+        while (i < 4) {
+            diagonalOne.add(matrix.get(start1 + rightDiagonalCounter).belonging);
+            diagonalSix.add(matrix.get(start6 + rightDiagonalCounter).belonging);
+            diagonalSeven.add(matrix.get(start7 + leftDiagonalCounter).belonging);
+            diagonalTwelve.add(matrix.get(start12 + leftDiagonalCounter).belonging);
+            rightDiagonalCounter += 6;
+            leftDiagonalCounter += 8;
+            i++;
+        }
+        rightDiagonalCounter = 0;
+        leftDiagonalCounter = 0;
+        i = 0;
+        while (i < 5){
+            diagonalTwo.add(matrix.get(start2 + rightDiagonalCounter).belonging);
+            diagonalFive.add(matrix.get(start5 + rightDiagonalCounter).belonging);
+            diagonalEight.add(matrix.get(start8 + leftDiagonalCounter).belonging);
+            diagonalEleven.add(matrix.get(start11 + leftDiagonalCounter).belonging);
+            rightDiagonalCounter += 6;
+            leftDiagonalCounter += 8;
+            i++;
+        }
+        rightDiagonalCounter = 0;
+        leftDiagonalCounter = 0;
+        i = 0;
+        while (i < 6){
+            diagonalThree.add(matrix.get(start3 + rightDiagonalCounter).belonging);
+            diagonalFour.add(matrix.get(start4 + rightDiagonalCounter).belonging);
+            diagonalNine.add(matrix.get(start9 + leftDiagonalCounter).belonging);
+            diagonalTen.add(matrix.get(start10 + leftDiagonalCounter).belonging);
+
+            rightDiagonalCounter += 6;
+            leftDiagonalCounter += 8;
+            i++;
+        }
+
+        result.add(diagonalOne);
+        result.add(diagonalTwo);
+        result.add(diagonalThree);
+        result.add(diagonalFour);
+        result.add(diagonalFive);
+        result.add(diagonalSix);
+        result.add(diagonalSeven);
+        result.add(diagonalEight);
+        result.add(diagonalNine);
+        result.add(diagonalTen);
+        result.add(diagonalEleven);
+        result.add(diagonalTwelve);
+        return result;
+    }
+
+    private void showMeMatrix(ArrayList<Field.Slot> matrix){ // не используется, нужен только для того, чтобы можно было посмотреть на то, как видет сама программа расклад дел на поле.
+        int i = 0;
+        while (i < 7){
+            System.out.print(matrix.get(i).belonging + " ");
+            i++;
+        }
+        System.out.print("\n");
+        while (i < 14){
+            System.out.print(matrix.get(i).belonging + " ");
+            i++;
+        }
+        System.out.print("\n");
+        while (i < 21){
+            System.out.print(matrix.get(i).belonging + " ");
+            i++;
+        }
+        System.out.print("\n");
+        while (i < 28){
+            System.out.print(matrix.get(i).belonging + " ");
+            i++;
+        }
+        System.out.print("\n");
+        while (i < 35){
+            System.out.print(matrix.get(i).belonging + " ");
+            i++;
+        }
+        System.out.print("\n");
+        while (i < 42){
+            System.out.print(matrix.get(i).belonging + " ");
+            i++;
+        }
+        System.out.print("\n");
+        System.out.println("*******");
+    }
+
+    private  void reload(){
+        for (int x = 1; x <= 7; x++) {
+            for (int y = 1; y <= 6; y++)
+                findButton(x, y).setStyle(defaultChip);
+        }
+        mainField = new Field();
+        stage = 0;
+        move.setStyle(greenChip);
+        gameStatus = true;
+    }
+    /*
     private int checkLine(ArrayList<Integer> line){
         int scorePlayer0 = 0;
         int scorePlayer1 = 0;
@@ -471,12 +691,15 @@ public class ForInController {
         return codeResult;
     }
 
-//очему-то не работает
+ */
+
+    //очему-то не работает
    /* private void countingTheNumberOfIdenticalSequentialChips(ArrayList<Integer> line, int count, int belonging, int scorePlayer){ //не умею называть методы
         while (count != line.size() && line.get(count) == belonging) {
             scorePlayer++;
             count++;
         }
     }*/
+
 
 }
