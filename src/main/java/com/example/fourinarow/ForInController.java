@@ -5,7 +5,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -18,33 +17,36 @@ public class ForInController {
 
     @FXML
     private ResourceBundle resources;
-
     @FXML
     private URL location;
-
     @FXML
     private javafx.scene.control.Button but22;
-
     @FXML
     private Button but11;
-
     @FXML
     private Button but12;
-
     @FXML
     private Button but13;
-
     @FXML
     private Button but14;
-
+    @FXML
+    private Button but15;
+    @FXML
+    private Button but16;
+    @FXML
+    private Button but17;
     @FXML
     private Button but21;
-
     @FXML
     private Button but23;
-
     @FXML
     private Button but24;
+    @FXML
+    private Button but25;
+    @FXML
+    private Button but26;
+    @FXML
+    private Button but27;
 
     @FXML
     private Button but31;
@@ -59,6 +61,13 @@ public class ForInController {
     private Button but34;
 
     @FXML
+    private Button but35;
+    @FXML
+    private Button but36;
+    @FXML
+    private Button but37;
+
+    @FXML
     private Button but41;
 
     @FXML
@@ -69,6 +78,46 @@ public class ForInController {
 
     @FXML
     private Button but44;
+    @FXML
+    private Button but45;
+    @FXML
+    private Button but46;
+    @FXML
+    private Button but47;
+
+    @FXML
+    private Button but51;
+
+    @FXML
+    private Button but52;
+
+    @FXML
+    private Button but53;
+
+    @FXML
+    private Button but54;
+
+    @FXML
+    private Button but55;
+    @FXML
+    private Button but56;
+    @FXML
+    private Button but57;
+
+    @FXML
+    private Button but61;
+    @FXML
+    private Button but62;
+    @FXML
+    private Button but63;
+    @FXML
+    private Button but64;
+    @FXML
+    private Button but65;
+    @FXML
+    private Button but66;
+    @FXML
+    private Button but67;
 
     private Integer[][] Button;
     private Integer move = 0;
@@ -115,6 +164,27 @@ public class ForInController {
             searchSlotStatus(4);
         }
     }
+    @FXML
+    protected void click5(){
+        if (gameStatus) {
+            searchSlotStatus(5);
+        }
+    }
+
+    @FXML
+    protected void click6(){
+        if (gameStatus) {
+            searchSlotStatus(6);
+        }
+    }
+
+    @FXML
+    protected void click7(){
+        if (gameStatus) {
+            searchSlotStatus(7);
+        }
+    }
+
 
     protected void searchSlotStatus(int line){
         ArrayList<Field.Slot> list = mainField.getLine(line);
@@ -124,9 +194,9 @@ public class ForInController {
             for (Field.Slot element: list){
                 if (element.status){                    //Пока не работает
                     findButton(line, count).setStyle(grayChip);
-                    System.out.println("<id> " + findButton(line,count).getId()); // выводит id кнопки/слота на котором находится
+                   System.out.println("<id> " + findButton(line,count).getId()); // выводит id кнопки/слота на котором находится
                     try {
-                        Thread.sleep(200);  //просто делает паузу на 200 млскнд
+                        Thread.sleep(50);  //
                     } catch (InterruptedException e) {
                         throw new RuntimeException(e);
                     }
@@ -177,6 +247,12 @@ public class ForInController {
                     case 4 -> {
                         return but41;
                     }
+                    case 5 -> {
+                        return but51;
+                    }
+                    case 6 -> {
+                        return but61;
+                    }
                 }
             }
             case 2 -> {
@@ -192,6 +268,12 @@ public class ForInController {
                     }
                     case 4 -> {
                         return  but42;
+                    }
+                    case 5 -> {
+                        return  but52;
+                    }
+                    case 6 -> {
+                        return  but62;
                     }
                 }
             }
@@ -209,6 +291,12 @@ public class ForInController {
                     case 4 -> {
                         return  but43;
                     }
+                    case 5 -> {
+                        return  but53;
+                    }
+                    case 6 -> {
+                        return  but63;
+                    }
                 }
             }
             case 4-> {
@@ -225,6 +313,78 @@ public class ForInController {
                     case 4 -> {
                         return but44;
                     }
+                    case 5 -> {
+                        return but54;
+                    }
+                    case 6 -> {
+                        return but64;
+                    }
+                }
+            }
+            case 5-> {
+                switch (position){
+                    case 1 -> {
+                        return but15;
+                    }
+                    case 2 -> {
+                        return but25;
+                    }
+                    case 3 -> {
+                        return but35;
+                    }
+                    case 4 -> {
+                        return but45;
+                    }
+                    case 5 -> {
+                        return but55;
+                    }
+                    case 6 -> {
+                        return but65;
+                    }
+                }
+            }
+            case 6-> {
+                switch (position){
+                    case 1 -> {
+                        return but16;
+                    }
+                    case 2 -> {
+                        return but26;
+                    }
+                    case 3 -> {
+                        return but36;
+                    }
+                    case 4 -> {
+                        return but46;
+                    }
+                    case 5 -> {
+                        return but56;
+                    }
+                    case 6 -> {
+                        return but66;
+                    }
+                }
+            }
+            case 7-> {
+                switch (position){
+                    case 1 -> {
+                        return but17;
+                    }
+                    case 2 -> {
+                        return but27;
+                    }
+                    case 3 -> {
+                        return but37;
+                    }
+                    case 4 -> {
+                        return but47;
+                    }
+                    case 5 -> {
+                        return but57;
+                    }
+                    case 6 -> {
+                        return but67;
+                    }
                 }
             }
         }
@@ -237,21 +397,27 @@ public class ForInController {
         ArrayList<Integer> lineTwo = new ArrayList<>();
         ArrayList<Integer> lineThree = new ArrayList<>();
         ArrayList<Integer> lineFour = new ArrayList<>();
+        ArrayList<Integer> lineFive = new ArrayList<>();
+        ArrayList<Integer> lineSix = new ArrayList<>();
         for (ArrayList<Field.Slot> element: arrayLists){
             lineOne.add(element.get(0).belonging);
             lineTwo.add(element.get(1).belonging);
             lineThree.add(element.get(2).belonging);
             lineFour.add(element.get(3).belonging);
+            lineFive.add(element.get(4).belonging);
+            lineSix.add(element.get(5).belonging);
         }
-        winner(lineOne);
-        winner(lineTwo);
-        winner(lineThree);
-        winner(lineFour);
+        checkForWinner(lineOne);
+        checkForWinner(lineTwo);
+        checkForWinner(lineThree);
+        checkForWinner(lineFour);
+        checkForWinner(lineFive);
+        checkForWinner(lineSix);
     }
 
-    private void winner(ArrayList<Integer> line){
+    private void checkForWinner(ArrayList<Integer> line){
         int result = checkLine(line);
-        FXMLLoader winner = new FXMLLoader();;
+        FXMLLoader winner = new FXMLLoader();
         if (result != -1){
             gameStatus = false;
             if (result == 0)
@@ -275,18 +441,41 @@ public class ForInController {
         int scorePlayer0 = 0;
         int scorePlayer1 = 0;
         int codeResult = -1;
-        for (Integer element: line){
-            switch (element){
+        int count = 0;
+        while (count != line.size()){
+            switch (line.get(count)){
                 case 0 -> {
-                    scorePlayer0++;
+                    while (count != line.size() && line.get(count) == 0) {
+                        scorePlayer0++;
+                        count++;
+                    }
+                    if (scorePlayer0 == 4)
+                        break;
+                    else scorePlayer0 = 0;
                 }
                 case 1 -> {
-                    scorePlayer1++;
+                    while (count != line.size() && line.get(count) == 1) {
+                        scorePlayer1++;
+                        count++;
+                    }
+                    if (scorePlayer1 == 4)
+                        break;
+                    else scorePlayer1 = 0;
                 }
             }
+            count++;
         }
         if (scorePlayer0 == 4) codeResult = 0;
         else if (scorePlayer1 == 4) codeResult = 1;
         return codeResult;
     }
+
+//очему-то не работает
+   /* private void countingTheNumberOfIdenticalSequentialChips(ArrayList<Integer> line, int count, int belonging, int scorePlayer){ //не умею называть методы
+        while (count != line.size() && line.get(count) == belonging) {
+            scorePlayer++;
+            count++;
+        }
+    }*/
+
 }
