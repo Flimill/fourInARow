@@ -413,6 +413,7 @@ public class ForInController {
         checkForWinner(lineFour);
         checkForWinner(lineFive);
         checkForWinner(lineSix);
+
     }
 
     private void checkForWinner(ArrayList<Integer> line){
@@ -442,10 +443,10 @@ public class ForInController {
         int scorePlayer1 = 0;
         int codeResult = -1;
         int count = 0;
-        while (count != line.size()){
+        while (count != line.size() - 1){
             switch (line.get(count)){
                 case 0 -> {
-                    while (count != line.size() && line.get(count) == 0) {
+                    while (count != line.size() - 1 && line.get(count) == 0) {
                         scorePlayer0++;
                         count++;
                     }
@@ -454,7 +455,7 @@ public class ForInController {
                     else scorePlayer0 = 0;
                 }
                 case 1 -> {
-                    while (count != line.size() && line.get(count) == 1) {
+                    while (count != line.size() - 1 && line.get(count) == 1) {
                         scorePlayer1++;
                         count++;
                     }
