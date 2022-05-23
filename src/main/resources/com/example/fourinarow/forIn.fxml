@@ -219,36 +219,36 @@
                 <Button fx:id="but67" maxHeight="206.0" maxWidth="224.0" minHeight="97.0" mnemonicParsing="false" onAction="#click7" prefHeight="206.0" prefWidth="224.0" style="-fx-background-radius: 25em; -fx-max-height: 100px; -fx-max-width: 100px; -fx-min-height: 100px; -fx-min-width: 100px;" BorderPane.alignment="CENTER" />
             </center>
         </BorderPane>
-      <BorderPane layoutX="947.0" layoutY="350.0" prefHeight="200.0" prefWidth="200.0" />
-      <BorderPane layoutX="957.0" layoutY="9.0" prefHeight="801.0" prefWidth="181.0" style="-fx-background-color: #AD8762;">
-         <center>
-              <Button fx:id="reset" mnemonicParsing="false" onAction="#restart" prefHeight="57.0" prefWidth="126.0" text="Resset" BorderPane.alignment="CENTER" />
-         </center>
-         <bottom>
-            <BorderPane prefHeight="697.0" prefWidth="181.0" style="-fx-background-color: #AD8762;" BorderPane.alignment="CENTER">
-               <top>
-                  <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Ход:" wrappingWidth="88.0" BorderPane.alignment="CENTER">
-                     <font>
-                        <Font name="System Italic" size="46.0" />
-                     </font>
-                  </Text>
-               </top>
-               <center>
-                  <Button fx:id="move" maxHeight="206.0" maxWidth="224.0" minHeight="97.0" mnemonicParsing="false" prefHeight="206.0" prefWidth="224.0" style="-fx-background-radius: 25em; -fx-max-height: 100px; -fx-max-width: 100px; -fx-min-height: 100px; -fx-min-width: 100px; -fx-background-color: #bbff00; -fx-border-color: black; -fx-border-radius: 25em; -fx-border-width: 3px;" BorderPane.alignment="CENTER" />
-               </center>
-               <bottom>
-                  <BorderPane prefHeight="261.0" prefWidth="177.0" style="-fx-background-color: #AD8762;" BorderPane.alignment="CENTER">
-                     <top>
-                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Four&#10;In A &#10;Row!&#10;" wrappingWidth="117.822265625" BorderPane.alignment="CENTER">
-                              <font>
-                                  <Font name="System Bold Italic" size="50.0" />
-                              </font>
-                          </Text>
-                     </top>
-                  </BorderPane>
-               </bottom>
-            </BorderPane>
-         </bottom>
-      </BorderPane>
+        <BorderPane layoutX="947.0" layoutY="350.0" prefHeight="200.0" prefWidth="200.0" />
+        <BorderPane layoutX="957.0" layoutY="9.0" prefHeight="801.0" prefWidth="181.0" style="-fx-background-color: #AD8762;">
+            <center>
+                <Button fx:id="reset" mnemonicParsing="false" onAction="#restart" prefHeight="57.0" prefWidth="126.0" text="Resset" BorderPane.alignment="CENTER" />
+            </center>
+            <bottom>
+                <BorderPane prefHeight="697.0" prefWidth="181.0" style="-fx-background-color: #AD8762;" BorderPane.alignment="CENTER">
+                    <top>
+                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Ход:" wrappingWidth="88.0" BorderPane.alignment="CENTER">
+                            <font>
+                                <Font name="System Italic" size="46.0" />
+                            </font>
+                        </Text>
+                    </top>
+                    <center>
+                        <Button fx:id="move" maxHeight="206.0" maxWidth="224.0" minHeight="97.0" mnemonicParsing="false" prefHeight="206.0" prefWidth="224.0" style="-fx-background-radius: 25em; -fx-max-height: 100px; -fx-max-width: 100px; -fx-min-height: 100px; -fx-min-width: 100px; -fx-background-color: #bbff00; -fx-border-color: black; -fx-border-radius: 25em; -fx-border-width: 3px;" BorderPane.alignment="CENTER" />
+                    </center>
+                    <bottom>
+                        <BorderPane prefHeight="261.0" prefWidth="177.0" style="-fx-background-color: #AD8762;" BorderPane.alignment="CENTER">
+                            <top>
+                                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Four&#10;In A &#10;Row!&#10;" wrappingWidth="117.822265625" BorderPane.alignment="CENTER">
+                                    <font>
+                                        <Font name="System Bold Italic" size="50.0" />
+                                    </font>
+                                </Text>
+                            </top>
+                        </BorderPane>
+                    </bottom>
+                </BorderPane>
+            </bottom>
+        </BorderPane>
     </children>
 </AnchorPane>

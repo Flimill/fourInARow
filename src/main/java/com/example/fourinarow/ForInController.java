@@ -125,15 +125,12 @@ public class ForInController {
 
 
     Field mainField = new Field();
-    boolean gameStatus = true; //стутс игры, если равен false, значит кто-то выйграл
-    int stage = 0; //ход какого игрока (0 или 1)
+    boolean gameStatus = true;
+    int stage = 0;
 
     String blueChip = "-fx-background-color: #0000ff; -fx-background-radius: 25em; -fx-max-height: 100px; -fx-max-width: 100px; -fx-min-height: 100px; -fx-min-width: 100px; -fx-border-color: black; -fx-border-radius: 25em; -fx-border-width: 3px";
-    String darkBlueChip = "-fx-background-color: #0044cc; -fx-background-radius: 25em; -fx-max-height: 100px; -fx-max-width: 100px; -fx-min-height: 100px; -fx-min-width: 100px";
     String greenChip = "-fx-background-color: #bbff00; -fx-background-radius: 25em; -fx-max-height: 100px; -fx-max-width: 100px; -fx-min-height: 100px; -fx-min-width: 100px; -fx-border-color: black; -fx-border-radius: 25em; -fx-border-width: 3px";
-    String darkGreenChip = "-fx-background-color: #00cc00; -fx-background-radius: 25em; -fx-max-height: 100px; -fx-max-width: 100px; -fx-min-height: 100px; -fx-min-width: 100px";
     String defaultChip = "-fx-background-radius: 25em; -fx-max-height: 100px; -fx-max-width: 100px; -fx-min-height: 100px; -fx-min-width: 100px";
-    String grayChip = "-fx-background-color: #bbff00; -fx-background-radius: 25em; -fx-max-height: 100px; -fx-max-width: 100px; -fx-min-height: 100px; -fx-min-width: 100px"; //
 
 
 
@@ -204,17 +201,13 @@ public class ForInController {
         if (freePosition != -1){
             int count = 1;
             for (Field.Slot element: list){
-                if (element.status){                    //Пока не работает (Если не будет времени на доработку, надо будет удалить...)
-                    findButton(line, count).setStyle(grayChip);
-                    //System.out.println("<id> " + findButton(line,count).getId()); // выводит id кнопки/слота на котором находится
+                if (element.status){
                     try {
-                        Thread.sleep(50);  //
+                        Thread.sleep(50);
                     } catch (InterruptedException e) {
                         throw new RuntimeException(e);
                     }
-                    findButton(line, count).setStyle(defaultChip);
-                }                                      // (...вот до сюда)
-
+                }
                 if (count == freePosition){
                     element.status = false;
                     if (stage == 0){
@@ -233,6 +226,9 @@ public class ForInController {
             }
         }
         checkStatus();
+        if (findOutIfThereIsAPlace(list) == -1){
+            checkForDraw();
+        }
     }
 
     protected int findOutIfThereIsAPlace(ArrayList<Field.Slot> line){
@@ -445,6 +441,32 @@ public class ForInController {
         }
     }
 
+    private void checkForDraw(){
+        ArrayList<Field.Slot> matrix = mainField.getMatrix();
+        ArrayList<Integer> topLine = getHorizontalLinesFromMatrix(matrix).get(0);
+        boolean allFilled = true;
+        for (Integer cell: topLine){
+            if (cell == -1) {
+                allFilled = false;
+                break;
+            }
+        }
+        if (allFilled){
+            FXMLLoader draw = new FXMLLoader();
+            gameStatus = false;
+            draw.setLocation(getClass().getResource("draw.fxml"));
+            try {
+                draw.load();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            Parent root = draw.getRoot();
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.showAndWait();
+        }
+    }
+
     private int checkLine(ArrayList<Integer> line){
         int scorePlayer0 = 0;
         int scorePlayer1 = 0;
@@ -494,8 +516,6 @@ public class ForInController {
         result.add(lineFour);
         result.add(lineFive);
         result.add(lineSix);
-
-        //showMeMatrix(matrix);
         return result;
     }
 
@@ -531,7 +551,7 @@ public class ForInController {
         return result;
     }
 
-    private ArrayList<ArrayList<Integer>> getDiagonalLinesFromMatrix(ArrayList<Field.Slot> matrix){  // пока понятия не имею как уменьшить это нагромождения кода.
+    private ArrayList<ArrayList<Integer>> getDiagonalLinesFromMatrix(ArrayList<Field.Slot> matrix){
         ArrayList<ArrayList<Integer>> result = new ArrayList<>();
         ArrayList<Integer> diagonalOne = new ArrayList<>();
         ArrayList<Integer> diagonalTwo = new ArrayList<>();
@@ -612,41 +632,6 @@ public class ForInController {
         return result;
     }
 
-    private void showMeMatrix(ArrayList<Field.Slot> matrix){ // не используется, нужен только для того, чтобы можно было посмотреть на то, как видет сама программа расклад дел на поле.
-        int i = 0;
-        while (i < 7){
-            System.out.print(matrix.get(i).belonging + " ");
-            i++;
-        }
-        System.out.print("\n");
-        while (i < 14){
-            System.out.print(matrix.get(i).belonging + " ");
-            i++;
-        }
-        System.out.print("\n");
-        while (i < 21){
-            System.out.print(matrix.get(i).belonging + " ");
-            i++;
-        }
-        System.out.print("\n");
-        while (i < 28){
-            System.out.print(matrix.get(i).belonging + " ");
-            i++;
-        }
-        System.out.print("\n");
-        while (i < 35){
-            System.out.print(matrix.get(i).belonging + " ");
-            i++;
-        }
-        System.out.print("\n");
-        while (i < 42){
-            System.out.print(matrix.get(i).belonging + " ");
-            i++;
-        }
-        System.out.print("\n");
-        System.out.println("*******");
-    }
-
     private  void reload(){
         for (int x = 1; x <= 7; x++) {
             for (int y = 1; y <= 6; y++)
@@ -657,49 +642,6 @@ public class ForInController {
         move.setStyle(greenChip);
         gameStatus = true;
     }
-    /*
-    private int checkLine(ArrayList<Integer> line){
-        int scorePlayer0 = 0;
-        int scorePlayer1 = 0;
-        int codeResult = -1;
-        int count = 0;
-        while (count != line.size() - 1){
-            switch (line.get(count)){
-                case 0 -> {
-                    while (count != line.size() - 1 && line.get(count) == 0) {
-                        scorePlayer0++;
-                        count++;
-                    }
-                    if (scorePlayer0 == 4)
-                        break;
-                    else scorePlayer0 = 0;
-                }
-                case 1 -> {
-                    while (count != line.size() - 1 && line.get(count) == 1) {
-                        scorePlayer1++;
-                        count++;
-                    }
-                    if (scorePlayer1 == 4)
-                        break;
-                    else scorePlayer1 = 0;
-                }
-            }
-            count++;
-        }
-        if (scorePlayer0 == 4) codeResult = 0;
-        else if (scorePlayer1 == 4) codeResult = 1;
-        return codeResult;
-    }
-
- */
-
-    //очему-то не работает
-   /* private void countingTheNumberOfIdenticalSequentialChips(ArrayList<Integer> line, int count, int belonging, int scorePlayer){ //не умею называть методы
-        while (count != line.size() && line.get(count) == belonging) {
-            scorePlayer++;
-            count++;
-        }
-    }*/
 
 
 }

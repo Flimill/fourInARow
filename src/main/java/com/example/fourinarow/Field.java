@@ -47,16 +47,16 @@ public class Field {
     private Slot slot23 = new Slot(2,3,true,-1);
     private Slot slot24 = new Slot(2,4,true,-1);
 
-    private Slot slot25 = new Slot(2,5,true,-1);
-    private Slot slot26 = new Slot(2,6,true,-1);
+    private Slot slot25 = new Slot(1,5,true,-1);
+    private Slot slot26 = new Slot(1,6,true,-1);
 
     private Slot slot31 = new Slot(3,1,true,-1);
     private Slot slot32 = new Slot(3,2, true,-1);
     private Slot slot33 = new Slot(3,3,true,-1);
     private Slot slot34 = new Slot(3,4,true,-1);
 
-    private Slot slot35 = new Slot(3,5,true,-1);
-    private Slot slot36 = new Slot(3,6,true,-1);
+    private Slot slot35 = new Slot(1,5,true,-1);
+    private Slot slot36 = new Slot(1,6,true,-1);
 
     private Slot slot41 = new Slot(4,1,true,-1);
     private Slot slot42 = new Slot(4,2, true,-1);
@@ -136,25 +136,6 @@ public class Field {
             }
         }
         return null;
-    }
-    private Slot searchSlot(int position){ //Пока не нужен (думаю и не потребуется)
-        switch (position) {
-            case 11 -> {
-                return slot11;
-            }
-            case 12 -> {
-                return slot12;
-            }
-            case 13 -> {
-                return slot13;
-            }
-            case 14 -> {
-                return slot14;
-            }
-            default -> {
-                return defaultSlot;
-            }
-        }
     }
 
     public ArrayList<ArrayList<Slot>> getAllLines(){
