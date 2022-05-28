@@ -196,11 +196,11 @@ public class ForInController {
     protected void searchSlotStatus(int line){
         greenChip = greenChip;
         blueChip = blueChip;
-        ArrayList<Field.Slot> list = mainField.getLine(line);
+        ArrayList<Slot> list = mainField.getLine(line);
         int freePosition = findOutIfThereIsAPlace(list);
         if (freePosition != -1){
             int count = 1;
-            for (Field.Slot element: list){
+            for (Slot element: list){
                 if (element.status){
                     try {
                         Thread.sleep(50);
@@ -231,10 +231,10 @@ public class ForInController {
         }
     }
 
-    protected int findOutIfThereIsAPlace(ArrayList<Field.Slot> line){
+    protected int findOutIfThereIsAPlace(ArrayList<Slot> line){
         int freePosition = -1;
         int count = 1;
-        for (Field.Slot element: line){
+        for (Slot element: line){
             if (element.status) freePosition = count;
             count++;
         }
@@ -402,7 +402,7 @@ public class ForInController {
     }
 
     private void checkStatus(){
-        ArrayList<Field.Slot> matrix = mainField.getMatrix();
+        ArrayList<Slot> matrix = mainField.getMatrix();
         ArrayList<ArrayList<Integer>> horizontalLines = getHorizontalLinesFromMatrix(matrix);
         ArrayList<ArrayList<Integer>> verticalLines = getVerticalLinesFromMatrix(matrix);
         ArrayList<ArrayList<Integer>> diagonalLines = getDiagonalLinesFromMatrix(matrix);
@@ -442,7 +442,7 @@ public class ForInController {
     }
 
     private void checkForDraw(){
-        ArrayList<Field.Slot> matrix = mainField.getMatrix();
+        ArrayList<Slot> matrix = mainField.getMatrix();
         ArrayList<Integer> topLine = getHorizontalLinesFromMatrix(matrix).get(0);
         boolean allFilled = true;
         for (Integer cell: topLine){
@@ -492,7 +492,7 @@ public class ForInController {
         return codeResult;
     }
 
-    private ArrayList<ArrayList<Integer>> getHorizontalLinesFromMatrix(ArrayList<Field.Slot> matrix){
+    private ArrayList<ArrayList<Integer>> getHorizontalLinesFromMatrix(ArrayList<Slot> matrix){
         ArrayList<ArrayList<Integer>> result = new ArrayList<>();;
         ArrayList<Integer> lineOne = new ArrayList<>();
         ArrayList<Integer> lineTwo = new ArrayList<>();
@@ -519,7 +519,7 @@ public class ForInController {
         return result;
     }
 
-    private ArrayList<ArrayList<Integer>> getVerticalLinesFromMatrix(ArrayList<Field.Slot> matrix){
+    private ArrayList<ArrayList<Integer>> getVerticalLinesFromMatrix(ArrayList<Slot> matrix){
         ArrayList<ArrayList<Integer>> result = new ArrayList<>();
         ArrayList<Integer> lineOne = new ArrayList<>();
         ArrayList<Integer> lineTwo = new ArrayList<>();
@@ -551,7 +551,7 @@ public class ForInController {
         return result;
     }
 
-    private ArrayList<ArrayList<Integer>> getDiagonalLinesFromMatrix(ArrayList<Field.Slot> matrix){
+    private ArrayList<ArrayList<Integer>> getDiagonalLinesFromMatrix(ArrayList<Slot> matrix){
         ArrayList<ArrayList<Integer>> result = new ArrayList<>();
         ArrayList<Integer> diagonalOne = new ArrayList<>();
         ArrayList<Integer> diagonalTwo = new ArrayList<>();

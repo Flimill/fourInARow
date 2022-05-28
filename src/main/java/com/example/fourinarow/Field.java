@@ -3,21 +3,7 @@ package com.example.fourinarow;
 import java.util.ArrayList;
 
 public class Field {
-    public class Slot {
-        int posX;
-        int posY;
 
-        boolean status;
-
-        int belonging;
-
-        public Slot(int x, int y, boolean status,int belonging) {
-            this.posX = x;
-            this.posY = y;
-            this.status = status;
-            this.belonging = belonging;
-        }
-    }
     ArrayList<Slot> list1 = new ArrayList<Slot>();
 
     ArrayList<Slot> list2 = new ArrayList<Slot>();
@@ -151,11 +137,11 @@ public class Field {
     }
 
     public ArrayList<Slot> getMatrix(){
-        ArrayList<ArrayList<Field.Slot>> arrayLines = getAllLines();
-        ArrayList<Field.Slot> result = new ArrayList<>();
+        ArrayList<ArrayList<Slot>> arrayLines = getAllLines();
+        ArrayList<Slot> result = new ArrayList<>();
         int count = 0;
         while (count != 6){
-            for (ArrayList<Field.Slot> lines : arrayLines) {
+            for (ArrayList<Slot> lines : arrayLines) {
                 result.add(lines.get(count));
             }
             count++;
