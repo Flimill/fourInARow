@@ -1,5 +1,8 @@
-package com.example.fourinarow;
+package Controller;
 
+import Model.Constants;
+import Model.Field;
+import Model.Slot;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

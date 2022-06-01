@@ -12,4 +12,10 @@ module com.example.fourinarow {
 
     opens com.example.fourinarow to javafx.fxml;
     exports com.example.fourinarow;
+    exports Model;
+    opens Model to javafx.fxml;
+    exports View;
+    opens View to javafx.fxml;
+    exports Controller;
+    opens Controller to javafx.fxml;
 }

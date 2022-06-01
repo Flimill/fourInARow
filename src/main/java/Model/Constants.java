@@ -1,4 +1,4 @@
-package com.example.fourinarow;
+package Model;
 
 public enum Constants { //стоит переименовать
     GreenPlayer,

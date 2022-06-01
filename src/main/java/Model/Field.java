@@ -1,14 +1,13 @@
-package com.example.fourinarow;
+package Model;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.List;
 
 public class Field {
 
 
 
-    private Slot slot11 = new Slot(1,1,true,Constants.Empty);
+    private Slot slot11 = new Slot(1,1,true, Constants.Empty);
     private Slot slot12 = new Slot(1,2, true,Constants.Empty);
     private Slot slot13 = new Slot(1,3,true,Constants.Empty);
     private Slot slot14 = new Slot(1,4,true,Constants.Empty);
@@ -21,16 +20,16 @@ public class Field {
     private Slot slot23 = new Slot(2,3,true,Constants.Empty);
     private Slot slot24 = new Slot(2,4,true,Constants.Empty);
 
-    private Slot slot25 = new Slot(1,5,true,Constants.Empty);
-    private Slot slot26 = new Slot(1,6,true,Constants.Empty);
+    private Slot slot25 = new Slot(2,5,true,Constants.Empty);
+    private Slot slot26 = new Slot(2,6,true,Constants.Empty);
 
     private Slot slot31 = new Slot(3,1,true,Constants.Empty);
     private Slot slot32 = new Slot(3,2, true,Constants.Empty);
     private Slot slot33 = new Slot(3,3,true,Constants.Empty);
     private Slot slot34 = new Slot(3,4,true,Constants.Empty);
 
-    private Slot slot35 = new Slot(1,5,true,Constants.Empty);
-    private Slot slot36 = new Slot(1,6,true,Constants.Empty);
+    private Slot slot35 = new Slot(3,5,true,Constants.Empty);
+    private Slot slot36 = new Slot(3,6,true,Constants.Empty);
 
     private Slot slot41 = new Slot(4,1,true,Constants.Empty);
     private Slot slot42 = new Slot(4,2, true,Constants.Empty);

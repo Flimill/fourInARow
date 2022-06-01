@@ -1,12 +1,12 @@
-package com.example.fourinarow;
+package Model;
 
 public class Slot {
-    int posX;
-    int posY;
+    public int posX;
+    public int posY;
 
-    boolean status;
+    public boolean status;
 
-    Constants belonging;
+    public Constants belonging;
 
     public Slot(int x, int y, boolean status,Constants belonging) {
         this.posX = x;
