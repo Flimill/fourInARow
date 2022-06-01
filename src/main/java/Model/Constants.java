@@ -1,4 +1,4 @@
-package game.Model;
+package Model;
 
 public enum Constants { //стоит переименовать
     GreenPlayer,

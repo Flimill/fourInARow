@@ -6,7 +6,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="819.0" prefWidth="1141.0" style="-fx-background-color: #654321;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="game.Controller.ForInController">
+<AnchorPane prefHeight="819.0" prefWidth="1141.0" style="-fx-background-color: #654321;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Controller.ForInController">
     <children>
         <AnchorPane layoutX="491.0" layoutY="-86.0" prefHeight="200.0" prefWidth="125.0" />
         <BorderPane layoutX="6.0" layoutY="142.0" prefHeight="126.0" prefWidth="126.0" style="-fx-background-color: F8DCA9;">

@@ -1,4 +1,4 @@
-package game.Model;
+package Model;
 
 public class Slot {
     public int posX;
@@ -8,7 +8,7 @@ public class Slot {
 
     public Constants belonging;
 
-    public Slot(int x, int y, boolean status, Constants belonging) {
+    public Slot(int x, int y, boolean status,Constants belonging) {
         this.posX = x;
         this.posY = y;
         this.status = status;

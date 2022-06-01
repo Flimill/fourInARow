@@ -1,4 +1,4 @@
-module game {
+module com.example.fourinarow {
     requires javafx.controls;
     requires javafx.fxml;
     requires javafx.web;
@@ -10,12 +10,12 @@ module game {
     requires org.kordamp.bootstrapfx.core;
     requires eu.hansolo.tilesfx;
 
-    opens com.example.fourinarow to javafx.fxml;
-    exports game.Model;
-    opens game.Model to javafx.fxml;
-    exports game.View;
-    opens game.View to javafx.fxml;
-    exports game.Controller;
-    opens game.Controller to javafx.fxml;
+    opens View to javafx.fxml;
+    exports Model;
+    opens Model to javafx.fxml;
+    exports Controller;
+    exports View;
+    opens Controller to javafx.fxml;
+
 
 }

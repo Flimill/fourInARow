@@ -1,6 +1,6 @@
-package game.View;
+package View;
 
-import game.Model.Constants;
+import Model.Constants;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -40,3 +40,4 @@ public class GameResult {
         stage.showAndWait();
     }
 }
+

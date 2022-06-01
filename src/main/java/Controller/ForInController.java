@@ -1,9 +1,9 @@
-package game.Controller;
+package Controller;
 
-import game.Model.Constants;
-import game.Model.Field;
-import game.Model.Slot;
-import game.View.GameResult;
+import View.GameResult;
+import Model.Field;
+import Model.Slot;
+import Model.Constants;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.util.Pair;
