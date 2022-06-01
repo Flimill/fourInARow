@@ -153,48 +153,48 @@ public class ForInController {
     @FXML
     protected void rowClick1(){
         if (gameStatus) {
-            checkAndAddSlot(1);
+            foo(1);
         }
     }
 
     @FXML
     protected void rowClick2(){
         if (gameStatus) {
-            checkAndAddSlot(2);
+            foo(2);
         }
     }
 
     @FXML
     protected void rowClick3(){
         if (gameStatus) {
-            checkAndAddSlot(3);
+            foo(3);
         }
     }
 
     @FXML
     protected void rowClick4(){
         if (gameStatus) {
-            checkAndAddSlot(4);
+            foo(4);
         }
     }
     @FXML
     protected void rowClick5(){
         if (gameStatus) {
-            checkAndAddSlot(5);
+            foo(5);
         }
     }
 
     @FXML
     protected void rowClick6(){
         if (gameStatus) {
-            checkAndAddSlot(6);
+            foo(6);
         }
     }
 
     @FXML
     protected void rowClick7(){
         if (gameStatus) {
-            checkAndAddSlot(7);
+            foo(7);
         }
     }
 
@@ -204,7 +204,16 @@ public class ForInController {
     }
 
 
-    protected void checkAndAddSlot(int line){
+    protected void foo(int line){
+        Constants result = checkAndAddSlot(line);
+        if (result != Constants.Empty){
+            gameStatus = false;
+            GameResult.outWinner(result);
+        }
+
+    }
+
+    protected Constants checkAndAddSlot(int line){
         List<Slot> row = mainField.getLine(line);
         int freePosition = findFreePosition(row);
         if (freePosition != -1){
@@ -234,10 +243,13 @@ public class ForInController {
                 count++;
             }
         }
-        checkStatus();
-        if (findFreePosition(row) == -1){
+        Constants status = checkStatus();
+        if (status != Constants.Empty)
+            return status;
+        return Constants.Empty;
+        /*if (findFreePosition(row) == -1){
             checkForDraw();
-        }
+        }*/
     }
 
     protected int findFreePosition(List<Slot> line){
@@ -254,22 +266,25 @@ public class ForInController {
         return (Button) getButtonMap().get(new Pair(horizontalLine, verticalLine));
     }
 
-    private void checkStatus(){
+    private Constants checkStatus(){
         List<Slot> matrix = mainField.getMatrix();
         List<List<Constants>> horizontalLines = getHorizontalLinesFromMatrix(matrix);
         List<List<Constants>> verticalLines = getVerticalLinesFromMatrix(matrix);
         List<List<Constants>> diagonalLines = getDiagonalLinesFromMatrix(matrix);
         for (List<Constants> line: horizontalLines){
-            checkForWinner(line);
+            if(checkLine(line) != Constants.Empty)
+                return checkLine(line);
         }
         for (List<Constants> line: verticalLines){
-            checkForWinner(line);
+            if(checkLine(line) != Constants.Empty)
+                return checkLine(line);
         }
         for (List<Constants> line: diagonalLines){
-            checkForWinner(line);
+            if(checkLine(line) != Constants.Empty)
+                return checkLine(line);
         }
 
-
+        return Constants.Empty;
     }
 
     private void checkForWinner(List<Constants> line){
