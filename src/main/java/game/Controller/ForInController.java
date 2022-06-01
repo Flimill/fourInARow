@@ -1,17 +1,13 @@
-package Controller;
+package game.Controller;
 
-import Model.Constants;
-import Model.Field;
-import Model.Slot;
+import game.Model.Constants;
+import game.Model.Field;
+import game.Model.Slot;
+import game.View.GameResult;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.stage.Stage;
 import javafx.util.Pair;
 
-import java.io.IOException;
 import java.util.*;
 
 
@@ -278,23 +274,9 @@ public class ForInController {
 
     private void checkForWinner(List<Constants> line){
         Constants result = checkLine(line);
-        FXMLLoader winner = new FXMLLoader();
         if (result != Constants.Empty){
             gameStatus = false;
-            if (result == Constants.GreenPlayer)
-                winner.setLocation(getClass().getResource("greenWins.fxml"));
-            if (result == Constants.BluePlayer)
-                winner.setLocation(getClass().getResource("blueWins.fxml"));
-            try {
-                winner.load();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            Parent root = winner.getRoot();
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root));
-            stage.showAndWait();
-
+            GameResult.outWinner(result);
         }
     }
 
@@ -309,18 +291,8 @@ public class ForInController {
             }
         }
         if (allFilled){
-            FXMLLoader draw = new FXMLLoader();
             gameStatus = false;
-            draw.setLocation(getClass().getResource("draw.fxml"));
-            try {
-                draw.load();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            Parent root = draw.getRoot();
-            Stage stage = new Stage();
-            stage.setScene(new Scene(root));
-            stage.showAndWait();
+            GameResult.outDraw();
         }
     }
 

@@ -1,4 +1,4 @@
-module com.example.fourinarow {
+module game {
     requires javafx.controls;
     requires javafx.fxml;
     requires javafx.web;
@@ -11,11 +11,11 @@ module com.example.fourinarow {
     requires eu.hansolo.tilesfx;
 
     opens com.example.fourinarow to javafx.fxml;
-    exports com.example.fourinarow;
-    exports Model;
-    opens Model to javafx.fxml;
-    exports View;
-    opens View to javafx.fxml;
-    exports Controller;
-    opens Controller to javafx.fxml;
+    exports game.Model;
+    opens game.Model to javafx.fxml;
+    exports game.View;
+    opens game.View to javafx.fxml;
+    exports game.Controller;
+    opens game.Controller to javafx.fxml;
+
 }
