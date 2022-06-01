@@ -6,19 +6,15 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
+import javafx.util.Pair;
 
 import java.io.IOException;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.ResourceBundle;
+import java.util.*;
 
 
 public class ForInController {
 
-    @FXML
-    private ResourceBundle resources;
-    @FXML
-    private URL location;
+
     @FXML
     private javafx.scene.control.Button but22;
     @FXML
@@ -120,17 +116,33 @@ public class ForInController {
     private Button but67;
     @FXML
     private Button move;
-    @FXML
-    private Button reset;
 
 
-    Field mainField = new Field();
-    boolean gameStatus = true;
-    int stage = 0;
 
-    String blueChip = "-fx-background-color: #0000ff; -fx-background-radius: 25em; -fx-max-height: 100px; -fx-max-width: 100px; -fx-min-height: 100px; -fx-min-width: 100px; -fx-border-color: black; -fx-border-radius: 25em; -fx-border-width: 3px";
-    String greenChip = "-fx-background-color: #bbff00; -fx-background-radius: 25em; -fx-max-height: 100px; -fx-max-width: 100px; -fx-min-height: 100px; -fx-min-width: 100px; -fx-border-color: black; -fx-border-radius: 25em; -fx-border-width: 3px";
-    String defaultChip = "-fx-background-radius: 25em; -fx-max-height: 100px; -fx-max-width: 100px; -fx-min-height: 100px; -fx-min-width: 100px";
+    private Map getButtonMap() {
+        List<Button> buttonList = List.of(but11,but12,but13,but14,but15, but16, but17,
+                but21,but22,but23,but24,but25,but26,but27,
+                but31,but32,but33,but34,but35,but36,but37,
+                but41,but42,but43,but44,but45,but46,but47,
+                but51,but52,but53,but54,but55,but56,but57,
+                but61,but62,but63,but64,but65,but66,but67);
+        Map<Pair<Integer, Integer>,Button> buttonMap = new HashMap<>();
+        int i = 0; //индекс кнопки в buttonList
+        for (int line = 1; line <= 6; line++)
+            for (int position = 1; position <= 7; position++) {
+                buttonMap.put(new Pair(line, position), buttonList.get(i));
+                i++;
+            }
+        return buttonMap;
+    }
+
+    private Field mainField = new Field();
+    boolean gameStatus = true; //
+    private Constants stage = Constants.GreenPlayer;
+
+    final static String blueChip = "-fx-background-color: #0000ff; -fx-background-radius: 25em; -fx-max-height: 100px; -fx-max-width: 100px; -fx-min-height: 100px; -fx-min-width: 100px; -fx-border-color: black; -fx-border-radius: 25em; -fx-border-width: 3px";
+    final static String greenChip = "-fx-background-color: #bbff00; -fx-background-radius: 25em; -fx-max-height: 100px; -fx-max-width: 100px; -fx-min-height: 100px; -fx-min-width: 100px; -fx-border-color: black; -fx-border-radius: 25em; -fx-border-width: 3px";
+    final static String defaultChip = "-fx-background-radius: 25em; -fx-max-height: 100px; -fx-max-width: 100px; -fx-min-height: 100px; -fx-min-width: 100px";
 
 
 
@@ -140,50 +152,50 @@ public class ForInController {
     }
 
     @FXML
-    protected void click1(){
+    protected void rowClick1(){
         if (gameStatus) {
-            searchSlotStatus(1);
+            checkAndAddSlot(1);
         }
     }
 
     @FXML
-    protected void click2(){
+    protected void rowClick2(){
         if (gameStatus) {
-            searchSlotStatus(2);
+            checkAndAddSlot(2);
         }
     }
 
     @FXML
-    protected void click3(){
+    protected void rowClick3(){
         if (gameStatus) {
-            searchSlotStatus(3);
+            checkAndAddSlot(3);
         }
     }
 
     @FXML
-    protected void click4(){
+    protected void rowClick4(){
         if (gameStatus) {
-            searchSlotStatus(4);
+            checkAndAddSlot(4);
         }
     }
     @FXML
-    protected void click5(){
+    protected void rowClick5(){
         if (gameStatus) {
-            searchSlotStatus(5);
-        }
-    }
-
-    @FXML
-    protected void click6(){
-        if (gameStatus) {
-            searchSlotStatus(6);
+            checkAndAddSlot(5);
         }
     }
 
     @FXML
-    protected void click7(){
+    protected void rowClick6(){
         if (gameStatus) {
-            searchSlotStatus(7);
+            checkAndAddSlot(6);
+        }
+    }
+
+    @FXML
+    protected void rowClick7(){
+        if (gameStatus) {
+            checkAndAddSlot(7);
         }
     }
 
@@ -193,15 +205,13 @@ public class ForInController {
     }
 
 
-    protected void searchSlotStatus(int line){
-        greenChip = greenChip;
-        blueChip = blueChip;
-        ArrayList<Slot> list = mainField.getLine(line);
-        int freePosition = findOutIfThereIsAPlace(list);
+    protected void checkAndAddSlot(int line){
+        List<Slot> row = mainField.getLine(line);
+        int freePosition = findFreePosition(row);
         if (freePosition != -1){
             int count = 1;
-            for (Slot element: list){
-                if (element.status){
+            for (Slot cell: row){
+                if (cell.status){
                     try {
                         Thread.sleep(50);
                     } catch (InterruptedException e) {
@@ -209,16 +219,16 @@ public class ForInController {
                     }
                 }
                 if (count == freePosition){
-                    element.status = false;
-                    if (stage == 0){
-                        element.belonging = 0;
+                    cell.status = false;
+                    if (stage == Constants.GreenPlayer){
+                        cell.belonging = Constants.GreenPlayer;
                         findButton(line,freePosition).setStyle(greenChip);
-                        stage = 1;
+                        stage = Constants.BluePlayer;
                         move.setStyle(blueChip);
                     } else {
-                        element.belonging = 1;
+                        cell.belonging = Constants.BluePlayer;
                         findButton(line,freePosition).setStyle(blueChip);
-                        stage = 0;
+                        stage = Constants.GreenPlayer;
                         move.setStyle(greenChip);
                     }
                 }
@@ -226,12 +236,12 @@ public class ForInController {
             }
         }
         checkStatus();
-        if (findOutIfThereIsAPlace(list) == -1){
+        if (findFreePosition(row) == -1){
             checkForDraw();
         }
     }
 
-    protected int findOutIfThereIsAPlace(ArrayList<Slot> line){
+    protected int findFreePosition(List<Slot> line){
         int freePosition = -1;
         int count = 1;
         for (Slot element: line){
@@ -241,192 +251,36 @@ public class ForInController {
         return freePosition;
     }
 
-    protected Button findButton(int line, int position){
-        switch (line){
-            case 1 -> {
-                switch (position){
-                    case 1 -> {
-                        return but11;
-                    }
-                    case 2 -> {
-                        return but21;
-                    }
-                    case 3 -> {
-                        return but31;
-                    }
-                    case 4 -> {
-                        return but41;
-                    }
-                    case 5 -> {
-                        return but51;
-                    }
-                    case 6 -> {
-                        return but61;
-                    }
-                }
-            }
-            case 2 -> {
-                switch (position){
-                    case 1 -> {
-                        return but12;
-                    }
-                    case 2 -> {
-                        return but22;
-                    }
-                    case 3 -> {
-                        return  but32;
-                    }
-                    case 4 -> {
-                        return  but42;
-                    }
-                    case 5 -> {
-                        return  but52;
-                    }
-                    case 6 -> {
-                        return  but62;
-                    }
-                }
-            }
-            case 3-> {
-                switch (position){
-                    case 1 -> {
-                        return but13;
-                    }
-                    case 2 -> {
-                        return  but23;
-                    }
-                    case 3 -> {
-                        return but33;
-                    }
-                    case 4 -> {
-                        return  but43;
-                    }
-                    case 5 -> {
-                        return  but53;
-                    }
-                    case 6 -> {
-                        return  but63;
-                    }
-                }
-            }
-            case 4-> {
-                switch (position){
-                    case 1 -> {
-                        return but14;
-                    }
-                    case 2 -> {
-                        return but24;
-                    }
-                    case 3 -> {
-                        return but34;
-                    }
-                    case 4 -> {
-                        return but44;
-                    }
-                    case 5 -> {
-                        return but54;
-                    }
-                    case 6 -> {
-                        return but64;
-                    }
-                }
-            }
-            case 5-> {
-                switch (position){
-                    case 1 -> {
-                        return but15;
-                    }
-                    case 2 -> {
-                        return but25;
-                    }
-                    case 3 -> {
-                        return but35;
-                    }
-                    case 4 -> {
-                        return but45;
-                    }
-                    case 5 -> {
-                        return but55;
-                    }
-                    case 6 -> {
-                        return but65;
-                    }
-                }
-            }
-            case 6-> {
-                switch (position){
-                    case 1 -> {
-                        return but16;
-                    }
-                    case 2 -> {
-                        return but26;
-                    }
-                    case 3 -> {
-                        return but36;
-                    }
-                    case 4 -> {
-                        return but46;
-                    }
-                    case 5 -> {
-                        return but56;
-                    }
-                    case 6 -> {
-                        return but66;
-                    }
-                }
-            }
-            case 7-> {
-                switch (position){
-                    case 1 -> {
-                        return but17;
-                    }
-                    case 2 -> {
-                        return but27;
-                    }
-                    case 3 -> {
-                        return but37;
-                    }
-                    case 4 -> {
-                        return but47;
-                    }
-                    case 5 -> {
-                        return but57;
-                    }
-                    case 6 -> {
-                        return but67;
-                    }
-                }
-            }
-        }
-        return null;
+    public Button findButton(int verticalLine, int horizontalLine){
+        return (Button) getButtonMap().get(new Pair(horizontalLine, verticalLine));
     }
 
     private void checkStatus(){
-        ArrayList<Slot> matrix = mainField.getMatrix();
-        ArrayList<ArrayList<Integer>> horizontalLines = getHorizontalLinesFromMatrix(matrix);
-        ArrayList<ArrayList<Integer>> verticalLines = getVerticalLinesFromMatrix(matrix);
-        ArrayList<ArrayList<Integer>> diagonalLines = getDiagonalLinesFromMatrix(matrix);
-        for (ArrayList<Integer> line: horizontalLines){
+        List<Slot> matrix = mainField.getMatrix();
+        List<List<Constants>> horizontalLines = getHorizontalLinesFromMatrix(matrix);
+        List<List<Constants>> verticalLines = getVerticalLinesFromMatrix(matrix);
+        List<List<Constants>> diagonalLines = getDiagonalLinesFromMatrix(matrix);
+        for (List<Constants> line: horizontalLines){
             checkForWinner(line);
         }
-        for (ArrayList<Integer> line: verticalLines){
+        for (List<Constants> line: verticalLines){
             checkForWinner(line);
         }
-        for (ArrayList<Integer> line: diagonalLines){
+        for (List<Constants> line: diagonalLines){
             checkForWinner(line);
         }
 
 
     }
 
-    private void checkForWinner(ArrayList<Integer> line){
-        int result = checkLine(line);
+    private void checkForWinner(List<Constants> line){
+        Constants result = checkLine(line);
         FXMLLoader winner = new FXMLLoader();
-        if (result != -1){
+        if (result != Constants.Empty){
             gameStatus = false;
-            if (result == 0)
+            if (result == Constants.GreenPlayer)
                 winner.setLocation(getClass().getResource("greenWins.fxml"));
-            if (result == 1)
+            if (result == Constants.BluePlayer)
                 winner.setLocation(getClass().getResource("blueWins.fxml"));
             try {
                 winner.load();
@@ -442,11 +296,11 @@ public class ForInController {
     }
 
     private void checkForDraw(){
-        ArrayList<Slot> matrix = mainField.getMatrix();
-        ArrayList<Integer> topLine = getHorizontalLinesFromMatrix(matrix).get(0);
+        List<Slot> matrix = mainField.getMatrix();
+        List<Constants> topLine = getHorizontalLinesFromMatrix(matrix).get(0);
         boolean allFilled = true;
-        for (Integer cell: topLine){
-            if (cell == -1) {
+        for (Constants cell: topLine){
+            if (cell == Constants.Empty) {
                 allFilled = false;
                 break;
             }
@@ -467,39 +321,37 @@ public class ForInController {
         }
     }
 
-    private int checkLine(ArrayList<Integer> line){
+    private Constants checkLine(List<Constants> line){
         int scorePlayer0 = 0;
         int scorePlayer1 = 0;
-        int codeResult = -1;
-        int prevResult = -2;
-        for (Integer element: line){
-            if (element != prevResult){
+        Constants prevSlotBelonging = Constants.Empty;
+        for (Constants belonging: line){
+            if (belonging != prevSlotBelonging){
                 scorePlayer0 = 0;
                 scorePlayer1 = 0;
             }
-            switch (element){
-                case 0 -> {
+            switch (belonging){
+                case GreenPlayer -> {
                     scorePlayer0++;
                 }
-                case 1 -> {
+                case BluePlayer -> {
                     scorePlayer1++;
                 }
             }
-            if (scorePlayer0 == 4) return 0;
-            else if (scorePlayer1 == 4) return 1;
-            prevResult = element;
+            if (scorePlayer0 == 4) return Constants.GreenPlayer;
+            else if (scorePlayer1 == 4) return Constants.BluePlayer;
+            prevSlotBelonging = belonging;
         }
-        return codeResult;
+        return Constants.Empty;
     }
 
-    private ArrayList<ArrayList<Integer>> getHorizontalLinesFromMatrix(ArrayList<Slot> matrix){
-        ArrayList<ArrayList<Integer>> result = new ArrayList<>();;
-        ArrayList<Integer> lineOne = new ArrayList<>();
-        ArrayList<Integer> lineTwo = new ArrayList<>();
-        ArrayList<Integer> lineThree = new ArrayList<>();
-        ArrayList<Integer> lineFour = new ArrayList<>();
-        ArrayList<Integer> lineFive = new ArrayList<>();
-        ArrayList<Integer> lineSix = new ArrayList<>();
+    private List<List<Constants>> getHorizontalLinesFromMatrix(List<Slot> matrix){
+        List<Constants> lineOne = new ArrayList<>();
+        List<Constants> lineTwo = new ArrayList<>();
+        List<Constants> lineThree = new ArrayList<>();
+        List<Constants> lineFour = new ArrayList<>();
+        List<Constants> lineFive = new ArrayList<>();
+        List<Constants> lineSix = new ArrayList<>();
         int i = 0;
         while (i < 7){
             lineOne.add(matrix.get(i).belonging);
@@ -510,24 +362,17 @@ public class ForInController {
             lineSix.add(matrix.get(i + 35).belonging);
             i++;
         }
-        result.add(lineOne);
-        result.add(lineTwo);
-        result.add(lineThree);
-        result.add(lineFour);
-        result.add(lineFive);
-        result.add(lineSix);
-        return result;
+        return List.of(lineOne,lineTwo,lineThree,lineFour,lineFive,lineFive,lineSix);
     }
 
-    private ArrayList<ArrayList<Integer>> getVerticalLinesFromMatrix(ArrayList<Slot> matrix){
-        ArrayList<ArrayList<Integer>> result = new ArrayList<>();
-        ArrayList<Integer> lineOne = new ArrayList<>();
-        ArrayList<Integer> lineTwo = new ArrayList<>();
-        ArrayList<Integer> lineThree = new ArrayList<>();
-        ArrayList<Integer> lineFour = new ArrayList<>();
-        ArrayList<Integer> lineFive = new ArrayList<>();
-        ArrayList<Integer> lineSix = new ArrayList<>();
-        ArrayList<Integer> lineSeven = new ArrayList<>();
+    private List<List<Constants>> getVerticalLinesFromMatrix(List<Slot> matrix){
+        List<Constants> lineOne = new ArrayList<>();
+        List<Constants> lineTwo = new ArrayList<>();
+        List<Constants> lineThree = new ArrayList<>();
+        List<Constants> lineFour = new ArrayList<>();
+        List<Constants> lineFive = new ArrayList<>();
+        List<Constants> lineSix = new ArrayList<>();
+        List<Constants> lineSeven = new ArrayList<>();
         int i = 0;
         int s = 0;
         while (i < 6){
@@ -541,31 +386,24 @@ public class ForInController {
             s += 7;
             i++;
         }
-        result.add(lineOne);
-        result.add(lineTwo);
-        result.add(lineThree);
-        result.add(lineFour);
-        result.add(lineFive);
-        result.add(lineSix);
-        result.add(lineSeven);
-        return result;
+        return List.of(lineOne,lineTwo,lineThree,lineFour,lineFive,lineFive,lineSix,lineSeven);
     }
 
-    private ArrayList<ArrayList<Integer>> getDiagonalLinesFromMatrix(ArrayList<Slot> matrix){
-        ArrayList<ArrayList<Integer>> result = new ArrayList<>();
-        ArrayList<Integer> diagonalOne = new ArrayList<>();
-        ArrayList<Integer> diagonalTwo = new ArrayList<>();
-        ArrayList<Integer> diagonalThree = new ArrayList<>();
-        ArrayList<Integer> diagonalFour = new ArrayList<>();
-        ArrayList<Integer> diagonalFive = new ArrayList<>();
-        ArrayList<Integer> diagonalSix = new ArrayList<>();
+    private List<List<Constants>> getDiagonalLinesFromMatrix(List<Slot> matrix){
+        List<List<Constants>> result = List.of();
+        List<Constants> diagonalOne = new ArrayList<>();
+        List<Constants> diagonalTwo = new ArrayList<>();
+        List<Constants> diagonalThree = new ArrayList<>();
+        List<Constants> diagonalFour = new ArrayList<>();
+        List<Constants> diagonalFive = new ArrayList<>();
+        List<Constants> diagonalSix = new ArrayList<>();
 
-        ArrayList<Integer> diagonalSeven = new ArrayList<>();
-        ArrayList<Integer> diagonalEight = new ArrayList<>();
-        ArrayList<Integer> diagonalNine = new ArrayList<>();
-        ArrayList<Integer> diagonalTen = new ArrayList<>();
-        ArrayList<Integer> diagonalEleven = new ArrayList<>();
-        ArrayList<Integer> diagonalTwelve = new ArrayList<>();
+        List<Constants> diagonalSeven = new ArrayList<>();
+        List<Constants> diagonalEight = new ArrayList<>();
+        List<Constants> diagonalNine = new ArrayList<>();
+        List<Constants> diagonalTen = new ArrayList<>();
+        List<Constants> diagonalEleven = new ArrayList<>();
+        List<Constants> diagonalTwelve = new ArrayList<>();
 
         int i = 0;
         int rightDiagonalCounter = 0;  // нужен для сдвига.
@@ -617,19 +455,8 @@ public class ForInController {
             i++;
         }
 
-        result.add(diagonalOne);
-        result.add(diagonalTwo);
-        result.add(diagonalThree);
-        result.add(diagonalFour);
-        result.add(diagonalFive);
-        result.add(diagonalSix);
-        result.add(diagonalSeven);
-        result.add(diagonalEight);
-        result.add(diagonalNine);
-        result.add(diagonalTen);
-        result.add(diagonalEleven);
-        result.add(diagonalTwelve);
-        return result;
+        return List.of(diagonalOne,diagonalTwo,diagonalThree,diagonalFour,diagonalFive,diagonalSix,diagonalSeven,
+                diagonalEight,diagonalNine,diagonalTen,diagonalEleven,diagonalTwelve);
     }
 
     private  void reload(){
@@ -638,7 +465,7 @@ public class ForInController {
                 findButton(x, y).setStyle(defaultChip);
         }
         mainField = new Field();
-        stage = 0;
+        stage = Constants.GreenPlayer;
         move.setStyle(greenChip);
         gameStatus = true;
     }
