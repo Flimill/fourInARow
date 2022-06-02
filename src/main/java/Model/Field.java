@@ -6,76 +6,82 @@ import java.util.List;
 public class Field {
 
 
-
-    private Slot slot11 = new Slot(1,1,true, Constants.Empty);
-    private Slot slot12 = new Slot(1,2, true,Constants.Empty);
-    private Slot slot13 = new Slot(1,3,true,Constants.Empty);
-    private Slot slot14 = new Slot(1,4,true,Constants.Empty);
-    private Slot slot15 = new Slot(1,5,true,Constants.Empty);
-    private Slot slot16 = new Slot(1,6,true,Constants.Empty);
+    private static Field mainField;
+    static boolean gameStatus = true;
+    private static Constants stage = Constants.GreenPlayer;
 
 
-    private Slot slot21 = new Slot(2,1,true,Constants.Empty);
-    private Slot slot22 = new Slot(2,2, true,Constants.Empty);
-    private Slot slot23 = new Slot(2,3,true,Constants.Empty);
-    private Slot slot24 = new Slot(2,4,true,Constants.Empty);
 
-    private Slot slot25 = new Slot(1,5,true,Constants.Empty);
-    private Slot slot26 = new Slot(1,6,true,Constants.Empty);
 
-    private Slot slot31 = new Slot(3,1,true,Constants.Empty);
-    private Slot slot32 = new Slot(3,2, true,Constants.Empty);
-    private Slot slot33 = new Slot(3,3,true,Constants.Empty);
-    private Slot slot34 = new Slot(3,4,true,Constants.Empty);
+    public  final Slot slot11 = new Slot(1,1,true, Constants.Empty);
+    public  final Slot slot12 = new Slot(1,2, true,Constants.Empty);
+    public  final Slot slot13 = new Slot(1,3,true,Constants.Empty);
+    public  final Slot slot14 = new Slot(1,4,true,Constants.Empty);
+    public  final Slot slot15 = new Slot(1,5,true,Constants.Empty);
+    public  final Slot slot16 = new Slot(1,6,true,Constants.Empty);
 
-    private Slot slot35 = new Slot(1,5,true,Constants.Empty);
-    private Slot slot36 = new Slot(1,6,true,Constants.Empty);
 
-    private Slot slot41 = new Slot(4,1,true,Constants.Empty);
-    private Slot slot42 = new Slot(4,2, true,Constants.Empty);
-    private Slot slot43 = new Slot(4,3,true,Constants.Empty);
-    private Slot slot44 = new Slot(4,4,true,Constants.Empty);
+    public  final Slot slot21 = new Slot(2,1,true,Constants.Empty);
+    public  final Slot slot22 = new Slot(2,2, true,Constants.Empty);
+    public  final Slot slot23 = new Slot(2,3,true,Constants.Empty);
+    public  final Slot slot24 = new Slot(2,4,true,Constants.Empty);
 
-    private Slot slot45 = new Slot(4,5,true,Constants.Empty);
-    private Slot slot46 = new Slot(4,6,true,Constants.Empty);
+    public  final Slot slot25 = new Slot(1,5,true,Constants.Empty);
+    public  final Slot slot26 = new Slot(1,6,true,Constants.Empty);
 
-    private Slot slot51 = new Slot(5,1,true,Constants.Empty);
-    private Slot slot52 = new Slot(5,2, true,Constants.Empty);
-    private Slot slot53 = new Slot(5,3,true,Constants.Empty);
-    private Slot slot54 = new Slot(5,4,true,Constants.Empty);
+    public  final Slot slot31 = new Slot(3,1,true,Constants.Empty);
+    public  final Slot slot32 = new Slot(3,2, true,Constants.Empty);
+    public  final Slot slot33 = new Slot(3,3,true,Constants.Empty);
+    public  final Slot slot34 = new Slot(3,4,true,Constants.Empty);
 
-    private Slot slot55 = new Slot(5,5,true,Constants.Empty);
-    private Slot slot56 = new Slot(5,6,true,Constants.Empty);
+    public  final Slot slot35 = new Slot(1,5,true,Constants.Empty);
+    public  final Slot slot36 = new Slot(1,6,true,Constants.Empty);
 
-    private Slot slot61 = new Slot(6,1,true,Constants.Empty);
-    private Slot slot62 = new Slot(6,2, true,Constants.Empty);
-    private Slot slot63 = new Slot(6,3,true,Constants.Empty);
-    private Slot slot64 = new Slot(6,4,true,Constants.Empty);
+    public  final Slot slot41 = new Slot(4,1,true,Constants.Empty);
+    public  final Slot slot42 = new Slot(4,2, true,Constants.Empty);
+    public  final Slot slot43 = new Slot(4,3,true,Constants.Empty);
+    public  final Slot slot44 = new Slot(4,4,true,Constants.Empty);
 
-    private Slot slot65 = new Slot(6,5,true,Constants.Empty);
-    private Slot slot66 = new Slot(6,6,true,Constants.Empty);
+    public  final Slot slot45 = new Slot(4,5,true,Constants.Empty);
+    public  final Slot slot46 = new Slot(4,6,true,Constants.Empty);
 
-    private Slot slot71 = new Slot(7,1,true,Constants.Empty);
-    private Slot slot72 = new Slot(7,2, true,Constants.Empty);
-    private Slot slot73 = new Slot(7,3,true,Constants.Empty);
-    private Slot slot74 = new Slot(7,4,true,Constants.Empty);
+    public  final Slot slot51 = new Slot(5,1,true,Constants.Empty);
+    public  final Slot slot52 = new Slot(5,2, true,Constants.Empty);
+    public  final Slot slot53 = new Slot(5,3,true,Constants.Empty);
+    public  final Slot slot54 = new Slot(5,4,true,Constants.Empty);
 
-    private Slot slot75 = new Slot(7,5,true,Constants.Empty);
-    private Slot slot76 = new Slot(7,6,true,Constants.Empty);
+    public  final Slot slot55 = new Slot(5,5,true,Constants.Empty);
+    public  final Slot slot56 = new Slot(5,6,true,Constants.Empty);
 
-    private List<Slot> list1 = List.of(slot11,slot12,slot13,slot14,slot15,slot16);
+    public  final Slot slot61 = new Slot(6,1,true,Constants.Empty);
+    public  final Slot slot62 = new Slot(6,2, true,Constants.Empty);
+    public  final Slot slot63 = new Slot(6,3,true,Constants.Empty);
+    public  final Slot slot64 = new Slot(6,4,true,Constants.Empty);
 
-    private List<Slot> list2 = List.of(slot21,slot22,slot23,slot24,slot25,slot26);
+    public  final Slot slot65 = new Slot(6,5,true,Constants.Empty);
+    public  final Slot slot66 = new Slot(6,6,true,Constants.Empty);
 
-    private List<Slot> list3 = List.of(slot31,slot32,slot33,slot34,slot35,slot36);
+    public  final Slot slot71 = new Slot(7,1,true,Constants.Empty);
+    public  final Slot slot72 = new Slot(7,2, true,Constants.Empty);
+    public  final Slot slot73 = new Slot(7,3,true,Constants.Empty);
+    public  final Slot slot74 = new Slot(7,4,true,Constants.Empty);
 
-    private List<Slot> list4 = List.of(slot41,slot42,slot43,slot44,slot45,slot46);
+    public  final Slot slot75 = new Slot(7,5,true,Constants.Empty);
+    public  final Slot slot76 = new Slot(7,6,true,Constants.Empty);
 
-    private List<Slot> list5 = List.of(slot51,slot52,slot53,slot54,slot55,slot56);
+    private final List<Slot> list1 = List.of(slot11,slot12,slot13,slot14,slot15,slot16);
 
-    private List<Slot> list6 = List.of(slot61,slot62,slot63,slot64,slot65,slot66);
+    private final List<Slot> list2 = List.of(slot21,slot22,slot23,slot24,slot25,slot26);
 
-    private List<Slot> list7 = List.of(slot71,slot72,slot73,slot74,slot75,slot76);
+    private final List<Slot> list3 = List.of(slot31,slot32,slot33,slot34,slot35,slot36);
+
+    private final List<Slot> list4 = List.of(slot41,slot42,slot43,slot44,slot45,slot46);
+
+    private final List<Slot> list5 = List.of(slot51,slot52,slot53,slot54,slot55,slot56);
+
+    private final List<Slot> list6 = List.of(slot61,slot62,slot63,slot64,slot65,slot66);
+
+    private final List<Slot> list7 = List.of(slot71,slot72,slot73,slot74,slot75,slot76);
 
 
 
@@ -100,4 +106,159 @@ public class Field {
         }
         return result;
     }
+
+
+    public static int findFreePosition(List<Slot> line){
+        int freePosition = -1;
+        int count = 1;
+        for (Slot element: line){
+            if (element.isNotEmpty) freePosition = count;
+            count++;
+        }
+        return freePosition;
+    }
+
+
+
+    public static List<List<Constants>> getHorizontalLinesFromMatrix(List<Slot> matrix){
+        List<Constants> lineOne = new ArrayList<>();
+        List<Constants> lineTwo = new ArrayList<>();
+        List<Constants> lineThree = new ArrayList<>();
+        List<Constants> lineFour = new ArrayList<>();
+        List<Constants> lineFive = new ArrayList<>();
+        List<Constants> lineSix = new ArrayList<>();
+        int i = 0;
+        while (i < 7){
+            lineOne.add(matrix.get(i).belonging);
+            lineTwo.add(matrix.get(i + 7).belonging);
+            lineThree.add(matrix.get(i + 14).belonging);
+            lineFour.add(matrix.get(i + 21).belonging);
+            lineFive.add(matrix.get(i + 28).belonging);
+            lineSix.add(matrix.get(i + 35).belonging);
+            i++;
+        }
+        return List.of(lineOne,lineTwo,lineThree,lineFour,lineFive,lineFive,lineSix);
+    }
+
+    public static List<List<Constants>> getVerticalLinesFromMatrix(List<Slot> matrix){
+        List<Constants> lineOne = new ArrayList<>();
+        List<Constants> lineTwo = new ArrayList<>();
+        List<Constants> lineThree = new ArrayList<>();
+        List<Constants> lineFour = new ArrayList<>();
+        List<Constants> lineFive = new ArrayList<>();
+        List<Constants> lineSix = new ArrayList<>();
+        List<Constants> lineSeven = new ArrayList<>();
+        int i = 0;
+        int s = 0;
+        while (i < 6){
+            lineOne.add(matrix.get(s).belonging);
+            lineTwo.add(matrix.get(s + 1).belonging);
+            lineThree.add(matrix.get(s + 2).belonging);
+            lineFour.add(matrix.get(s + 3).belonging);
+            lineFive.add(matrix.get(s + 4).belonging);
+            lineSix.add(matrix.get(s + 5).belonging);
+            lineSeven.add(matrix.get(s + 6).belonging);
+            s += 7;
+            i++;
+        }
+        return List.of(lineOne,lineTwo,lineThree,lineFour,lineFive,lineFive,lineSix,lineSeven);
+    }
+
+    public static List<List<Constants>> getDiagonalLinesFromMatrix(List<Slot> matrix){
+        List<Constants> diagonalOne = new ArrayList<>();
+        List<Constants> diagonalTwo = new ArrayList<>();
+        List<Constants> diagonalThree = new ArrayList<>();
+        List<Constants> diagonalFour = new ArrayList<>();
+        List<Constants> diagonalFive = new ArrayList<>();
+        List<Constants> diagonalSix = new ArrayList<>();
+
+        List<Constants> diagonalSeven = new ArrayList<>();
+        List<Constants> diagonalEight = new ArrayList<>();
+        List<Constants> diagonalNine = new ArrayList<>();
+        List<Constants> diagonalTen = new ArrayList<>();
+        List<Constants> diagonalEleven = new ArrayList<>();
+        List<Constants> diagonalTwelve = new ArrayList<>();
+
+        int i = 0;
+        int rightDiagonalCounter = 0;  // нужен для сдвига.
+        int leftDiagonalCounter = 0;
+        int start1 = 3;     //стартовые индексы диагонали
+        int start2 = 4;
+        int start3 = 5;
+        int start4 = 6;
+        int start5 = 13;
+        int start6 = 20;
+        int start7 = 14;
+        int start8 = 7;
+        int start9 = 0;
+        int start10 = 1;
+        int start11 = 2;
+        int start12 = 3;
+        while (i < 4) {
+            diagonalOne.add(matrix.get(start1 + rightDiagonalCounter).belonging);
+            diagonalSix.add(matrix.get(start6 + rightDiagonalCounter).belonging);
+            diagonalSeven.add(matrix.get(start7 + leftDiagonalCounter).belonging);
+            diagonalTwelve.add(matrix.get(start12 + leftDiagonalCounter).belonging);
+            rightDiagonalCounter += 6;
+            leftDiagonalCounter += 8;
+            i++;
+        }
+        rightDiagonalCounter = 0;
+        leftDiagonalCounter = 0;
+        i = 0;
+        while (i < 5){
+            diagonalTwo.add(matrix.get(start2 + rightDiagonalCounter).belonging);
+            diagonalFive.add(matrix.get(start5 + rightDiagonalCounter).belonging);
+            diagonalEight.add(matrix.get(start8 + leftDiagonalCounter).belonging);
+            diagonalEleven.add(matrix.get(start11 + leftDiagonalCounter).belonging);
+            rightDiagonalCounter += 6;
+            leftDiagonalCounter += 8;
+            i++;
+        }
+        rightDiagonalCounter = 0;
+        leftDiagonalCounter = 0;
+        i = 0;
+        while (i < 6){
+            diagonalThree.add(matrix.get(start3 + rightDiagonalCounter).belonging);
+            diagonalFour.add(matrix.get(start4 + rightDiagonalCounter).belonging);
+            diagonalNine.add(matrix.get(start9 + leftDiagonalCounter).belonging);
+            diagonalTen.add(matrix.get(start10 + leftDiagonalCounter).belonging);
+
+            rightDiagonalCounter += 6;
+            leftDiagonalCounter += 8;
+            i++;
+        }
+
+        return List.of(diagonalOne,diagonalTwo,diagonalThree,diagonalFour,diagonalFive,diagonalSix,diagonalSeven,
+                diagonalEight,diagonalNine,diagonalTen,diagonalEleven,diagonalTwelve);
+    }
+
+
+    public static boolean getGameStatus(){
+        return gameStatus;
+    }
+
+    public static Field getMainField(){return mainField;}
+
+    public static void turnOffGameStatus(){
+        gameStatus = false;
+    }
+
+    public static void turnOnGameStatus(){
+        gameStatus = true;
+    }
+
+    public static Constants getStage(){return stage;}
+
+
+    public static void createNewField(){
+        mainField = new Field();
+    }
+
+    public static void setStage(Constants constants){
+        stage = constants;
+    }
+
+
+
 }

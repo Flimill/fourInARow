@@ -9,6 +9,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class GameResult {
+
     public static void outWinner(Constants result) {
         FXMLLoader winner = new FXMLLoader();
         if (result == Constants.GreenPlayer)
@@ -26,6 +27,7 @@ public class GameResult {
         stage.showAndWait();
 
     }
+
     public static void outDraw(){
         FXMLLoader draw = new FXMLLoader();
         draw.setLocation(GameResult.class.getResource("draw.fxml"));
