@@ -1,10 +1,7 @@
 package Controller;
 
-import Model.Checks;
+import Model.*;
 import View.GameResult;
-import Model.Field;
-import Model.Slot;
-import Model.Constants;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.util.Pair;
@@ -18,7 +15,7 @@ public class ForInController {
     @FXML
     private javafx.scene.control.Button but22;
     @FXML
-    private Button but11;
+    public Button but11;
     @FXML
     private Button but12;
     @FXML
@@ -117,8 +114,6 @@ public class ForInController {
     @FXML
     private Button move;
 
-    @FXML
-    private Button reset;
 
 
     final static String blueChip = "-fx-background-color: #0000ff; -fx-background-radius: 25em; -fx-max-height: 100px; -fx-max-width: 100px; -fx-min-height: 100px; -fx-min-width: 100px; -fx-border-color: black; -fx-border-radius: 25em; -fx-border-width: 3px";
@@ -189,6 +184,7 @@ public class ForInController {
         Field.createNewField();
         Field.setStage(Constants.GreenPlayer);
         Field.turnOnGameStatus();
+        move.setStyle(greenChip);
     }
 
 
@@ -202,7 +198,8 @@ public class ForInController {
             else
                 GameResult.outWinner(result);
         }
-
+        if (Computer.computerPlayer && Field.getStage() == Constants.BluePlayer && Field.getGameStatus())
+            strokeProcessing(Computer.makesMove());
     }
 
     public Constants checkAndAddSlot(int line){

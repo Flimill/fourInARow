@@ -13,61 +13,61 @@ public class Field {
 
 
 
-    private final Slot slot11 = new Slot(1,1,true, Constants.Empty);
-    private final Slot slot12 = new Slot(1,2, true,Constants.Empty);
-    private final Slot slot13 = new Slot(1,3,true,Constants.Empty);
-    private final Slot slot14 = new Slot(1,4,true,Constants.Empty);
-    private final Slot slot15 = new Slot(1,5,true,Constants.Empty);
-    private final Slot slot16 = new Slot(1,6,true,Constants.Empty);
+    private final Slot slot11 = new Slot(1,1, Constants.Empty);
+    private final Slot slot12 = new Slot(1,2, Constants.Empty);
+    private final Slot slot13 = new Slot(1,3,Constants.Empty);
+    private final Slot slot14 = new Slot(1,4,Constants.Empty);
+    private final Slot slot15 = new Slot(1,5,Constants.Empty);
+    private final Slot slot16 = new Slot(1,6,Constants.Empty);
 
 
-    private final Slot slot21 = new Slot(2,1,true,Constants.Empty);
-    private final Slot slot22 = new Slot(2,2, true,Constants.Empty);
-    private final Slot slot23 = new Slot(2,3,true,Constants.Empty);
-    private final Slot slot24 = new Slot(2,4,true,Constants.Empty);
+    private final Slot slot21 = new Slot(2,1,Constants.Empty);
+    private final Slot slot22 = new Slot(2,2, Constants.Empty);
+    private final Slot slot23 = new Slot(2,3,Constants.Empty);
+    private final Slot slot24 = new Slot(2,4,Constants.Empty);
 
-    private final Slot slot25 = new Slot(1,5,true,Constants.Empty);
-    private final Slot slot26 = new Slot(1,6,true,Constants.Empty);
+    private final Slot slot25 = new Slot(1,5,Constants.Empty);
+    private final Slot slot26 = new Slot(1,6,Constants.Empty);
 
-    private final Slot slot31 = new Slot(3,1,true,Constants.Empty);
-    private final Slot slot32 = new Slot(3,2, true,Constants.Empty);
-    private final Slot slot33 = new Slot(3,3,true,Constants.Empty);
-    private final Slot slot34 = new Slot(3,4,true,Constants.Empty);
+    private final Slot slot31 = new Slot(3,1,Constants.Empty);
+    private final Slot slot32 = new Slot(3,2, Constants.Empty);
+    private final Slot slot33 = new Slot(3,3,Constants.Empty);
+    private final Slot slot34 = new Slot(3,4,Constants.Empty);
 
-    private final Slot slot35 = new Slot(1,5,true,Constants.Empty);
-    private final Slot slot36 = new Slot(1,6,true,Constants.Empty);
+    private final Slot slot35 = new Slot(1,5,Constants.Empty);
+    private final Slot slot36 = new Slot(1,6,Constants.Empty);
 
-    private final Slot slot41 = new Slot(4,1,true,Constants.Empty);
-    private final Slot slot42 = new Slot(4,2, true,Constants.Empty);
-    private final Slot slot43 = new Slot(4,3,true,Constants.Empty);
-    private final Slot slot44 = new Slot(4,4,true,Constants.Empty);
+    private final Slot slot41 = new Slot(4,1,Constants.Empty);
+    private final Slot slot42 = new Slot(4,2, Constants.Empty);
+    private final Slot slot43 = new Slot(4,3,Constants.Empty);
+    private final Slot slot44 = new Slot(4,4,Constants.Empty);
 
-    private final Slot slot45 = new Slot(4,5,true,Constants.Empty);
-    private final Slot slot46 = new Slot(4,6,true,Constants.Empty);
+    private final Slot slot45 = new Slot(4,5,Constants.Empty);
+    private final Slot slot46 = new Slot(4,6,Constants.Empty);
 
-    private final Slot slot51 = new Slot(5,1,true,Constants.Empty);
-    private final Slot slot52 = new Slot(5,2, true,Constants.Empty);
-    private final Slot slot53 = new Slot(5,3,true,Constants.Empty);
-    private final Slot slot54 = new Slot(5,4,true,Constants.Empty);
+    private final Slot slot51 = new Slot(5,1,Constants.Empty);
+    private final Slot slot52 = new Slot(5,2, Constants.Empty);
+    private final Slot slot53 = new Slot(5,3,Constants.Empty);
+    private final Slot slot54 = new Slot(5,4,Constants.Empty);
 
-    private final Slot slot55 = new Slot(5,5,true,Constants.Empty);
-    private final Slot slot56 = new Slot(5,6,true,Constants.Empty);
+    private final Slot slot55 = new Slot(5,5,Constants.Empty);
+    private final Slot slot56 = new Slot(5,6,Constants.Empty);
 
-    private final Slot slot61 = new Slot(6,1,true,Constants.Empty);
-    private final Slot slot62 = new Slot(6,2, true,Constants.Empty);
-    private final Slot slot63 = new Slot(6,3,true,Constants.Empty);
-    private final Slot slot64 = new Slot(6,4,true,Constants.Empty);
+    private final Slot slot61 = new Slot(6,1,Constants.Empty);
+    private final Slot slot62 = new Slot(6,2, Constants.Empty);
+    private final Slot slot63 = new Slot(6,3,Constants.Empty);
+    private final Slot slot64 = new Slot(6,4,Constants.Empty);
 
-    private final Slot slot65 = new Slot(6,5,true,Constants.Empty);
-    private final Slot slot66 = new Slot(6,6,true,Constants.Empty);
+    private final Slot slot65 = new Slot(6,5,Constants.Empty);
+    private final Slot slot66 = new Slot(6,6,Constants.Empty);
 
-    private final Slot slot71 = new Slot(7,1,true,Constants.Empty);
-    private final Slot slot72 = new Slot(7,2, true,Constants.Empty);
-    private final Slot slot73 = new Slot(7,3,true,Constants.Empty);
-    private final Slot slot74 = new Slot(7,4,true,Constants.Empty);
+    private final Slot slot71 = new Slot(7,1,Constants.Empty);
+    private final Slot slot72 = new Slot(7,2, Constants.Empty);
+    private final Slot slot73 = new Slot(7,3,Constants.Empty);
+    private final Slot slot74 = new Slot(7,4,Constants.Empty);
 
-    private final Slot slot75 = new Slot(7,5,true,Constants.Empty);
-    private final Slot slot76 = new Slot(7,6,true,Constants.Empty);
+    private final Slot slot75 = new Slot(7,5,Constants.Empty);
+    private final Slot slot76 = new Slot(7,6,Constants.Empty);
 
     public final List<Slot> list1 = List.of(slot11,slot12,slot13,slot14,slot15,slot16);
 

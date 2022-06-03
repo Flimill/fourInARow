@@ -10,9 +10,8 @@ import java.io.IOException;
 public class ForInApplication extends Application {
     @Override
     public void start(Stage stage) throws IOException {
-        System.out.println(ForInApplication.class.getResource("forIn.fxml"));
-        FXMLLoader fxmlLoader = new FXMLLoader(ForInApplication.class.getResource("forIn.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 1144, 819);
+        FXMLLoader fxmlLoader = new FXMLLoader(ForInApplication.class.getResource("startWindow.fxml"));
+        Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("4 In A Row");
         stage.setScene(scene);
         stage.show();
