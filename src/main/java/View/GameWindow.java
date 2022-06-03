@@ -3,6 +3,7 @@ package View;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -18,6 +19,8 @@ public class GameWindow {
         }
         Parent root = draw.getRoot();
         Stage stage = new Stage();
+        stage.getIcons().add(new Image(String.valueOf(GameWindow.class.getResource("/images/icon.png"))));
+        stage.setTitle("4 In A Row");
         stage.setScene(new Scene(root));
         stage.showAndWait();
     }
