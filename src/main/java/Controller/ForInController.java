@@ -211,7 +211,7 @@ public class ForInController {
         if (freePosition != -1){
             int count = 1;
             for (Slot cell: row){
-                if (cell.isNotEmpty){
+                if (cell.belonging != Constants.Empty){
                     try {
                         Thread.sleep(50);
                     } catch (InterruptedException e) {
@@ -219,7 +219,6 @@ public class ForInController {
                     }
                 }
                 if (count == freePosition){
-                    cell.isNotEmpty = false;
                     if (Field.getStage() == Constants.GreenPlayer){
                         cell.belonging = Constants.GreenPlayer;
                         findButton(line,freePosition).setStyle(greenChip);
